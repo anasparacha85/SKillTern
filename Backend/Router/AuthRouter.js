@@ -1,0 +1,20 @@
+const express=require('express')
+const Router=express.Router()
+const AuthController=require('../Controller/AuthController')
+const validate=require('../Middleware/ValidatorMiddleware')
+const {loginvalidate,signupvalidate}=require('../Validation/Validator')
+
+const passport=require('passport')
+const router = require('./InstructorRouter')
+const OTPMiddleware = require('../Middleware/OTPMiddleware')
+require('../Config/passport')
+Router.route('/register').post(validate(signupvalidate),AuthController.UserRegister)
+Router.route('/Admin/Register').post(validate(signupvalidate),AuthController.AdminRegister)
+Router.route('/Login').post(validate(loginvalidate),AuthController.Login)
+Router.route('/ForgetPassword').post(AuthController.ForgetPassword)
+Router.route('/VerifyOtp').post(OTPMiddleware,AuthController.VerifyOtp)
+Router.route('/UpdatePassword').patch(OTPMiddleware,AuthController.UpdatePassword)
+Router.route('/google').get(passport.authenticate("google",{scope:["profile","email"]}))
+Router.route('/google/callback').get(passport.authenticate("google",{session:false}),AuthController.GoogleLogin)
+
+module.exports=Router
