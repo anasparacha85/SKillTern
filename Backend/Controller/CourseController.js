@@ -22,7 +22,7 @@ const uploadCourses=async(req,res)=>{
         console.log(error);
         res.status(500).json({ error: error.message });
      
-        
+        // https://github.com/anasparacha85/SKillTern#
     }
 }
 
