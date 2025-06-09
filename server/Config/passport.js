@@ -20,10 +20,14 @@ passport.use(
         if (!user) {
           return done(null, false, { message: 'User not Exists!' });
         }
+        if(user.Status=="DeActivated"){
+          return done(null,false,{message:"User has been DeActivated"})
+        }
         const isMatch = await user.comparePassword(password);
         if (!isMatch) {
           return done(null, false, { message: 'Invalid Credentials!' });
         }
+        
         return done(null, user);
       } catch (error) {
         console.log(error);
@@ -64,6 +68,7 @@ passport.use(
     async (accessToken, refreshToken, profile, done) => {
       try {
         let user = await User.findOne({ googleId: profile.id });
+          
         if (!user) {
           user = await User.create({
             googleId: profile.id,
@@ -73,6 +78,10 @@ passport.use(
             role: 'User'
           });
         }
+        if(user.Status=='DeActivated'){
+          return done(null,false,{message:"User is DeActivated"})
+        }
+     
         return done(null, user);
       } catch (error) {
         return done(error, false);

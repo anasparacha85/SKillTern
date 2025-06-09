@@ -41,7 +41,7 @@ export const MyCourses = () => {
        {courses.length>0?
        
        <div className="container mx-auto p-6">
-      <h1 className="text-3xl font-bold mb-6">All Courses</h1>
+      <h1 className="text-3xl font-bold mb-6 text-gray-700">All Courses</h1>
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
         
          {courses.map((course, index) => (
@@ -49,7 +49,7 @@ export const MyCourses = () => {
         ))}
       </div>
     </div>: <div className='mx-auto py-4 px-2
-       '><h1 className='text-green-600 text-xl  '>You are enrolled in no courses so far</h1> </div>}
+       '><h1 className='text-red-600 text-xl  '>You are enrolled in no courses so far</h1> </div>}
 
 
     </>

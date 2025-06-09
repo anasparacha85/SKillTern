@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Menu, X, User, Settings, Image, PointerIcon, PodcastIcon, DeleteIcon, EqualApproximately } from "lucide-react";
+import { Menu, X, User, Settings, Image, PointerIcon, PodcastIcon, DeleteIcon, EqualApproximately, User2 } from "lucide-react";
 import LMSHeader from "../../../Components/LMSHeader";
 import ProfileHeader from "../../../Components/ProfileHeader";
 import { Outlet } from "react-router";
@@ -7,15 +7,17 @@ import { usestore } from "../../../Store/ContextStore";
 import { NavLink } from "react-router-dom";
 import Header from "../../../Components/Header";
 import { MdAppBlocking } from "react-icons/md";
+import { CgProfile } from "react-icons/cg";
+import { PiStudentBold } from "react-icons/pi";
 
 const AdminLayout = () => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
 const {user,url}=usestore()
   return (
-    <>
+    <div className="overflow-x-hidden overflow-y-hidden h-screen">
   <Header/>
    
-     <div className="flex h-screen bg-gray-100 ">
+     <div className="flex h-screen bg-gray-100 overflow-y-hidden ">
       {/* Sidebar */}
       <aside
         className={`fixed  bg-gray-50 text-gray-600 w-64 p-5 transition-transform ${
@@ -43,13 +45,13 @@ const {user,url}=usestore()
         {/* Sidebar Navigation */}
         <nav className="space-y-4">
           <NavLink to="/Admin" className="flex items-center p-2 hover:bg-gray-700 rounded-md">
-            <User className="mr-2" size={20} /> Profile
+            <CgProfile className="mr-2" size={20} /> Profile
           </NavLink>
-          <NavLink to="/Admin/AdminProfile/Account" className="flex items-center p-2 hover:bg-gray-700 rounded-md">
-            <Settings className="mr-2" size={20} /> Account
+          <NavLink to="/Admin/EnrolledStudents" className="flex items-center p-2 hover:bg-gray-700 rounded-md">
+            <PiStudentBold className="mr-2" size={20} /> Enrolled Students
           </NavLink>
-          <NavLink to="/Admin/AdminProfile/Photo" className="flex items-center p-2 hover:bg-gray-700 rounded-md">
-            <Image className="mr-2" size={20} /> Photos
+          <NavLink to="/Admin/AllUsers" className="flex items-center p-2 hover:bg-gray-700 rounded-md">
+            <User2 className="mr-2" size={20} /> Users
           </NavLink>
           <NavLink to="/Admin/JobApplications" className="flex items-center p-2 hover:bg-gray-700 rounded-md">
             <PointerIcon className="mr-2" size={20} /> Job Applications
@@ -78,7 +80,7 @@ const {user,url}=usestore()
 
      <Outlet/>
       </main>
-    </div></>
+    </div></div>
    
   );
 };

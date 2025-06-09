@@ -92,34 +92,34 @@ export const InstructorApplications = () => {
     <div className='w-full h-[100%] flex justify-center items-center'><ClipLoader size={50} color='blue' loading={loading}/></div>
     ) : (
       <div className="bg-white shadow-md rounded-lg p-4">
-        <table className="w-screen lg:w-full border-collapse border border-gray-300">
+        <table className="w-screen lg:w-full  border-gray-300">
           <thead>
             <tr className="bg-gray-100">
-              <th className="border p-2">Name</th>
-              <th className="border p-2">Email</th>
-              <th className="border p-2">Address</th>
-              <th className="border p-2">Message</th>
+              <th className="border-b p-2">Name</th>
+              <th className="border-b p-2">Email</th>
+              <th className="border-b p-2">Address</th>
+              <th className="border-b p-2">Message</th>
 
-              <th className="border p-2">document</th>
-              <th className="border p-2">Phone Number</th>
-              <th className="border p-2">Status</th>
+              <th className="border-b p-2">document</th>
+              <th className="border-b p-2">Phone Number</th>
+              <th className="border-b p-2">Status</th>
               
               
-              <th className="border p-2">Make Instructor</th>
-              <th className="border p-2">Remove Instructor</th>
+              <th className="border-b p-2">Make Instructor</th>
+              <th className="border-b p-2">Remove Instructor</th>
 
             </tr>
           </thead>
           <tbody>
             {applications.map((app) => (
               <tr key={app._id} className="hover:bg-gray-50">
-                <td className="border p-2">{app.name}</td>
-                <td className="border p-2">{app.email}</td>
-                <td className="border p-2">{app.address}</td>
-                <td className="border p-2">{app.message}</td>
-                <td className="border p-2">
+                <td className="border-b p-2">{app.name}</td>
+                <td className="border-b p-2">{app.email}</td>
+                <td className="border-b p-2">{app.address}</td>
+                <td className="border-b p-2">{app.message}</td>
+                <td className="border-b p-2">
                   <a
-                    href={`${url}/${app.document}`} 
+                    href={`${app.document}`} 
                     target="_blank" 
                     rel="noopener noreferrer"
                     className="text-blue-500 underline"
@@ -127,12 +127,12 @@ export const InstructorApplications = () => {
                     View Resume
                   </a>
                 </td>
-                <td className="border p-2">{app.phone}</td>
-                <td className="border p-2">{app.status}</td>
-                <td className="border p-2 ">
+                <td className="border-b p-2">{app.phone}</td>
+                <td className="border-b p-2">{app.status}</td>
+                <td className="border-b p-2 ">
                   <button onClick={()=>onApprove(app.email)} className="bg-green-600 text-white px-3 py-1 rounded cursor-pointer">Make</button>
                 </td>
-                <td className="border p-2">
+                <td className="border-b p-2">
                 <button onClick={()=>onRemove(app.email)} className="bg-red-600 text-white px-3 py-1 ml-2 rounded cursor-pointer">Remove</button>
                 </td>
                

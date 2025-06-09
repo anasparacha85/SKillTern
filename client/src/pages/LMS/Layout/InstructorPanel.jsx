@@ -20,7 +20,7 @@ export const InstructorPanel = () => {
     
       {/* Sidebar */}
       <div
-        className={`fixed md:relative bg-gray-900 text-white w-64 p-6 h-screen space-y-6 md:block transition-transform duration-300 ${
+        className={`fixed md:relative bg-[#242145] text-white w-64 p-6 h-screen space-y-6 md:block transition-transform duration-300 ${
           isOpen ? "translate-x-0" : "-translate-x-full"
         } md:translate-x-0`}
       >

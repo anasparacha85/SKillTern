@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { NavLink, useLocation } from 'react-router-dom';
+import { Link, NavLink, useLocation } from 'react-router-dom';
 import { usestore } from '../Store/ContextStore';
 import ProfileOverlay from './OverLays/ProfileOverlay';
 import Skillternloog from '../../public/skillternloog.png'
@@ -26,22 +26,31 @@ export const UserHeader = () => {
   
 
   return (
-    <header className="bg-white  sticky top-0 p-4">
+    <header className="bg-[#242145]  sticky top-0 p-4">
       <div className="max-w-6xl  mx-auto flex items-center justify-between">
         {/* Logo */}
-        <div className="  text-xl">
-          <img src={Skillternloog} alt="" className='w-40 h-20' style={{mixBlendMode:'multiply'}}/>
-        </div>
+        <div className="text-xl w-1/5">
+      <Link to="/" className="flex items-center text-white mr-8">
+              <svg
+                className="h-8 w-8 mr-2 bg-red-600 rounded-full p-2"
+                fill="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path d="M12 2L2 19h20L12 2zm0 3.8L18.5 17H5.5L12 5.8z" />
+              </svg>
+              <span className="font-bold text-xl">Skilltern</span>
+            </Link>
+    </div>
 
         {/* Desktop Navigation Links */}
         <div className="hidden lg:flex space-x-6 mt-4 mr-5 font-semibold">
-          <NavLink to="/" className={({isActive})=>(` ${isActive?'text-green-700':'text-black'}`)} >Home</NavLink>
-          <NavLink to="/Internships" className={({isActive})=>(` ${isActive?'text-green-700':'text-black'}`)} >Internships</NavLink>
-          <NavLink to="/CompanyCollaboration" className={({isActive})=>(` ${isActive?'text-green-700':'text-black'}`)} >Company Collaboration</NavLink>
-          <NavLink to="/Contact" className={({isActive})=>(` ${isActive?'text-green-700':'text-black'}`)} >Contact</NavLink>
+          <NavLink to="/" className={({isActive})=>(` ${isActive?'text-red-700':'text-black'}`)} >Home</NavLink>
+          <NavLink to="/Internships" className={({isActive})=>(` ${isActive?'text-red-700':'text-black'}`)} >Internships</NavLink>
+          <NavLink to="/CompanyCollaboration" className={({isActive})=>(` ${isActive?'text-red-700':'text-black'}`)} >Company Collaboration</NavLink>
+          <NavLink to="/Contact" className={({isActive})=>(` ${isActive?'text-red-700':'text-black'}`)} >Contact</NavLink>
         
         
-          <NavLink to="/job-portal">  <button className="bg-green-600 font-bold text-white px-4 py-2 rounded-[30px] cursor-pointer -mt-1" >Job Portal</button> </NavLink>
+          <NavLink to="/job-portal">  <button className="bg-gradient-to-r from-purple-700 to-red-600 font-bold text-white px-4 py-2 rounded-[30px] cursor-pointer -mt-1" >Job Portal</button> </NavLink>
             {isLoggedIn?<> 
             
             <div className="relative cursor-pointer -mt-1 cursor-pointer  text-gray-700 "

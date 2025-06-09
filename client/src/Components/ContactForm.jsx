@@ -71,7 +71,7 @@ const ContactForm = () => {
         <div className="w-full flex justify-start">
         <button
             type="submit"
-            className="w-1/3 bg-green-600 text-white font-semibold p-3 rounded-lg hover:bg-green-700 transition"
+            className="w-1/3 bg-purple-700 text-white font-semibold p-3 rounded-lg hover:bg-green-700 transition"
           >
             Send Message
           </button>

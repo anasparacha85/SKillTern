@@ -23,4 +23,13 @@ adminRouter.route('/makeInstructor/:email')
 adminRouter.route('/removeInstructor/:email')
   .patch(passport.authenticate('jwt', { session: false }), RoleAccess('Admin'), AdminController.removeinstructor);
 
+adminRouter.route('/getAllUsers')
+  .get(passport.authenticate('jwt',{session:false}),RoleAccess('Admin'),AdminController.getAllUsers)
+
+adminRouter.route('/ToggleStatus')
+  .patch(passport.authenticate('jwt',{session:false}),RoleAccess('Admin'),AdminController.ToggleActivate)
+
+adminRouter.route('/GetEnrolledStudents')
+  .get(passport.authenticate('jwt',{session:false}),RoleAccess('Admin'),AdminController.GetEnrolledStudents)
+
 export default adminRouter;

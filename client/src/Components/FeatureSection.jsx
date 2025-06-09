@@ -1,56 +1,35 @@
-import FeaturesCard from "./Cardss/FeaturesCard";
+
 import Aos from 'aos'
 import 'aos/dist/aos.css'
 import { useEffect } from "react";
+import Growth from '../../public/pluralsight-one-collage.webp';
 const FeatureSection = ({}) => {
   useEffect(()=>{
     Aos.init()
   },[])
     return (
-      <div className="flex flex-col md:flex-row items-center justify-between px-6 md:px-16 py-10 gap-8">
-        {/* Left Side - Image */}
-        <div className="md:w-1/2 flex justify-center" data-aos="fade-right"
-     data-aos-offset="400"
-     data-aos-duration="1000"
-     
-     data-aos-easing="ease-in-sine">
-          <img 
-            src="https://www.internee.pk/images/task.webp" 
-            alt="Feature" 
-            className="lg:w-[800px] w-auto rounded-lg shadow-lg"
-          />
-        </div>
-  
-        {/* Right Side - Content */}
-        <div className="md:w-1/2 text-center md:text-left">
-          <h3 className="text-lg font-semibold ">Our own task portal</h3>
-          <h1 className="text-3xl md:text-4xl font-bold text-gray-900 mt-2">
-          Manage Project Via Own Task Portal
-          </h1>
-          <p className="text-gray-700 mt-4">
-          Welcome to internee.pk task portal. Where Tasks Transform Into Skills
-          </p>
-  
-          {/* Cards Grid */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mt-6" >
-            {/* Card 1 */}
-            <FeaturesCard img="https://img.icons8.com/ios/50/system-information.png" span="Hands on Projects we believe in learning by doing. Dive into hands-on projects that simulate real-world scenarios. From coding challenges to creative projects, every task is crafted to impart practical skills that resonate in professional environments."/>
-           
-  
-            {/* Card 2 */}
-            <FeaturesCard img="https://img.icons8.com/fluency-systems-filled/50/user-group-woman-woman.png" span="How to represent yourself More than just completing tasks, It empowers you to showcase your journey. Every completed task contributes to your digital portfolio, a dynamic representation of your skills and accomplishments. Let your work speak volumes about your capabilities."/>
-
-          
-  
-            {/* Card 3 */}
-            <FeaturesCard img="https://img.icons8.com/ios/50/system-information.png" span="SDLC Techniques Understanding the Software Development Life Cycle (SDLC) is pivotal in the tech world. Acquire skills that align with industry standards and boost your project management proficiency."/>
-          
-            {/* Card 4 */}
-            <FeaturesCard img="https://img.icons8.com/fluency-systems-filled/50/user-group-woman-woman.png" span="Easy to understand Learning shouldn't be complicated. Our tasks are designed to be easily comprehensible, ensuring a smooth learning experience for everyone. Whether you're a seasoned professional or a beginner."/>
-           
+       <div className='mt-[6%] mb-[8%]'>
+      <div className='lg:w-[80%] mx-auto px-4 sm:px-6 lg:px-8'>
+        <div className='flex flex-col lg:flex-row-reverse justify-center items-center gap-10'>
+          <div className='flex-1'>
+            <img src={Growth} className='h-auto w-full rounded-lg object-cover' alt="About Us" />
+          </div>
+          <div className='flex-1 text-center lg:text-left'>
+            <div className='mb-10'>
+                <span className='text-purple-900 italic text-6xl font-extrabold'>Skillhub</span>
+            </div>
+            <h1 className='text-3xl sm:text-5xl font-extrabold text-blue-950 mb-4'>See our growth, progress, and evolution</h1>
+            <p className='text-gray-800 text-base sm:text-md mt-2'>
+            At Skillhub, we see firsthand every day how technology makes the impossible possible. It’s why Pluralsight One exists: to accelerate our mission of advancing the world’s tech workforce, challenging assumptions about solutions, and creating significant, lasting social impact.            </p>
+            <div className='mt-6'>
+              <button className='bg-red-600 font-semibold hover:bg-red-500 duration-500 transition-all text-white py-3 px-8 rounded-3xl'>
+                For non-profits
+              </button>
+            </div>
           </div>
         </div>
       </div>
+    </div>
     );
   };
   

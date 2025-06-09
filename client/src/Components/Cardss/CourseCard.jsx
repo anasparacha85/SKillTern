@@ -55,7 +55,7 @@ const CourseCard = ({ image, title, description, price, id ,rout,Label}) => {
       {/* Course Image */}
       <div className="relative">
         <img src={image} alt={title} className="w-full h-48 object-fill" />
-        <span className="absolute top-3 left-3 bg-green-600 text-white text-xs font-semibold px-3 py-1 rounded-full">
+        <span className="absolute top-3 left-3 bg-gradient-to-r from-purple-700 to-red-600 text-white text-xs font-semibold px-3 py-1 rounded-full">
           Bestseller
         </span>
 
@@ -66,7 +66,7 @@ const CourseCard = ({ image, title, description, price, id ,rout,Label}) => {
         >
           <HeartIcon
             className={`w-6 h-6 ${
-              isFavorite ? "text-green-500 fill-green-500" : "text-gray-400"
+              isFavorite ? "text-purple-700 fill-purple-700" : "text-gray-400"
             }`}
           />
         </button>
@@ -86,11 +86,11 @@ const CourseCard = ({ image, title, description, price, id ,rout,Label}) => {
         </div>
 
         {/* Pricing */}
-        <p className="text-lg font-bold text-green-600">{price == 0 ? "Free" : "Paid"}</p>
+        <p className="text-lg font-bold text-purple-700">{price == 0 ? "Free" : "Paid"}</p>
 
         {/* Enroll Button */}
         <Link to={rout}>
-          <button className="mt-4 w-full bg-green-600 text-white py-2 rounded-lg hover:bg-green-700 transition duration-300">
+          <button className="mt-4 w-full bg-gradient-to-r from-purple-700 to-red-600 text-white py-2 rounded-lg hover:bg-purple-800 transition duration-300">
             {Label}
           </button>
         </Link>

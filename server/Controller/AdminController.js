@@ -3,6 +3,7 @@ import jobmodal from "../Model/JobModal.js";
 import InstructorModal from "../Model/InstructorModal.js";
 import User from "../Model/UserModal.js";
 import transporter from "../Middleware/transporter.js";
+import EnrollmentModel from "../Model/EnrollmentModal.js";
 
 const ViewJobApplications = async (req, res) => {
   try {
@@ -156,7 +157,62 @@ const removeinstructor = async (req, res) => {
     res.status(500).json({ FailureMessage: "Internal Server Error" });
   }
 };
+const getAllUsers=async(req,res)=>{
+    try {
+        const users=await User.find();
+        if(users.length==0){
+            return res.status(400).json({FailureMessage:"No Users Found"})
+        }
+        res.status(200).json(users)
 
+    } catch (error) {
+        console.log(error);
+        
+        res.status(500).json({FailureMessage:"Internal Server error",Message:error.message})
+    }
+}
+const ToggleActivate=async(req,res)=>{
+    try {
+      let updatedUsers
+        const {userId,Action}=req.body;
+        console.log(Action);
+        
+        const userdata=await User.findOne({_id:userId})
+        if(Action=="Activate"){
+         await  User.updateOne({_id:userdata._id},{$set:{Status:"Activated"}})
+        res.status(200).json({SuccessMessage:"User has been Activated"})
+      
+         
+        }
+        if(Action=="DeActivate"){
+            await  User.updateOne({_id:userdata._id},{$set:{Status:"DeActivated"}})
+        res.status(200).json({SuccessMessage:"User has been DeActivated"})
+      
+
+        }
+        
+    } catch (error) {
+      console.log(error);
+      
+       res.status(500).json({FailureMessage:"Internal Server error",Message:error.message})
+        
+    }
+}
+
+const GetEnrolledStudents=async(req,res)=>{
+  try {
+    const enrolledstudentsdata=await EnrollmentModel.find().populate('student').populate('course')
+    if(enrolledstudentsdata.length==0){
+      return res.status(400).json({FailureMessage:"No Students Enrolled"})
+    }
+    res.status(200).json(enrolledstudentsdata)
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({FailureMessage:"Internal Server Error",error:error.message})
+    
+    
+  }
+}
 export default {
   ViewJobApplications,
   deletejob,
@@ -164,4 +220,7 @@ export default {
   alljobs,
   makeInstructor,
   removeinstructor,
+  getAllUsers,
+  ToggleActivate,
+  GetEnrolledStudents
 };

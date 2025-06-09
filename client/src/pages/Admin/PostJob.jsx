@@ -57,6 +57,16 @@ const [job, setjob] = useState({})
           if(data.SuccessMessage){
                 toast.success(data.SuccessMessage)
                 setjob(data.job)
+                setFormData({
+                   JobCategory: "",
+    JobName: "",
+    JobDescription: "",
+    JobType: "Full-time",
+    JobLocation: "",
+    JobDuration: "",
+    CategoryImage: null,
+    JobImage: null,
+                })
               }
               if(data.FailureMessage){
                 toast.error(data.FailureMessage)
@@ -69,12 +79,12 @@ const [job, setjob] = useState({})
 
 
   return (
-    <>
+    <div className="">
     
-    <div className="max-w-2xl mx-auto p-6 bg-white shadow-md rounded-lg mt-10">
+    <div className="max-w-2xl mx-auto p-6 bg-white shadow-md rounded-lg mt-10 h-[580px] overflow-y-scroll ">
        
       <h2 className="text-2xl font-semibold text-center mb-4">Post a Job</h2>
-      <form onSubmit={handleSubmit} className="space-y-4" encType="multipart/form-data">
+      <form onSubmit={handleSubmit} className="space-y-4" encType="multipart/form-data" >
         <select name="JobCategory" value={formData.jobCategory} onChange={handleChange} className="w-full p-2 border rounded-md" required>
           <option value="">Select Job Category</option>
           {jobCategories.map((cat) => <option key={cat} value={cat}>{cat}</option>)}
@@ -108,7 +118,7 @@ const [job, setjob] = useState({})
     </div>
 
   
-    </>
+    </div>
   );
 }
 export default PostJob;

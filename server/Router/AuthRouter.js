@@ -16,4 +16,6 @@ authRouter.route('/UpdatePassword').patch(OTPMiddleware, AuthController.UpdatePa
 authRouter.route('/google').get(passport.authenticate("google", { scope: ["profile", "email"] }));
 authRouter.route('/google/callback').get(passport.authenticate("google", { session: false }), AuthController.GoogleLogin);
 
+
+
 export default authRouter;

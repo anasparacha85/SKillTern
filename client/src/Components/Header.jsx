@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { NavLink, useNavigate } from 'react-router-dom';
+import { Link, NavLink, useNavigate } from 'react-router-dom';
 import { usestore } from '../Store/ContextStore';
 import AdminProfileOverlay from './OverLays/AdminProfileOverlay';
 
@@ -24,20 +24,28 @@ else{
 
 }
   return (
-    <header className="bg-green-500 sticky top-0 p-4">
+    <header className="bg-[#1b1834]  sticky top-0 p-4 ">
       <div className="max-w-6xl mx-auto flex items-center justify-between">
         {/* Logo */}
-        <div className="  text-xl">
-         <img src={Skillternloog} alt="" className='w-40 h-20' style={{mixBlendMode:'color-burn'}}/>
-        </div>
-
+        <div className="text-xl w-1/5">
+      <Link to="/" className="flex items-center text-white mr-8">
+              <svg
+                className="h-8 w-8 mr-2 bg-red-600 rounded-full p-2"
+                fill="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path d="M12 2L2 19h20L12 2zm0 3.8L18.5 17H5.5L12 5.8z" />
+              </svg>
+              <span className="font-bold text-xl">Skilltern</span>
+            </Link>
+    </div>
         {/* Desktop Navigation Links */}
         <div className="hidden md:flex space-x-6 mt-4 mr-5">
-          <NavLink to="/job-portal" className={({isActive})=>(` ${isActive?'text-green-700':'text-white'}`)} >Home</NavLink>
-          <NavLink to="/job-portal/company" className={({isActive})=>(` ${isActive?'text-green-700':'text-white'}`)}>Company</NavLink>
-          <NavLink to="/job-portal/hiring" className={({isActive})=>(` ${isActive?'text-green-700':'text-white'}`)} >Hiring</NavLink>
-          <NavLink to="/job-portal/About-us" className={({isActive})=>(` ${isActive?'text-green-700':'text-white'}`)}>About Us</NavLink>
-          <NavLink to="/job-portal/contact" className={({isActive})=>(` ${isActive?'text-green-700':'text-white'}`)}>Contact</NavLink>
+          <NavLink to="/job-portal" className={({isActive})=>(` ${isActive?'text-red-600':'text-white'}`)} >Home</NavLink>
+          <NavLink to="/job-portal/company" className={({isActive})=>(` ${isActive?'text-red-600':'text-white'}`)}>Company</NavLink>
+          <NavLink to="/job-portal/hiring" className={({isActive})=>(` ${isActive?'text-red-600':'text-white'}`)} >Hiring</NavLink>
+          <NavLink to="/job-portal/About-us" className={({isActive})=>(` ${isActive?'text-red-600':'text-white'}`)}>About Us</NavLink>
+          <NavLink to="/job-portal/contact" className={({isActive})=>(` ${isActive?'text-red-600':'text-white'}`)}>Contact</NavLink>
           {isLoggedIn&&AdminKey?   <> 
             
             <div className="relative cursor-pointer -mt-1   text-gray-700 "
@@ -60,7 +68,7 @@ else{
           }
          
          
-          <button onClick={onPostClick} className="bg-green-700 text-white px-4 py-2 rounded -mt-1 cursor-pointer" >Post a Job</button>
+          <button onClick={onPostClick} className="bg-red-500 text-white px-4 py-2 rounded -mt-1 cursor-pointer" >Post a Job</button>
         </div>
 
         {/* Hamburger Menu for Mobile */}
@@ -80,7 +88,7 @@ else{
           <NavLink to="/job-portal/hiring" className="block">Hiring</NavLink>
           <NavLink to="/job-portal/About-us" className="block">About Us</NavLink>
           <NavLink to="/job-portal/contact" className="block">Contact</NavLink>
-          <button onClick={onPostClick} className="block bg-green-500 text-white px-4 py-2 rounded" >Post a Job</button>
+          <button onClick={onPostClick} className="block bg-red-500 text-white px-4 py-2 rounded" >Post a Job</button>
 
           {isLoggedIn&&AdminKey?   <> 
             

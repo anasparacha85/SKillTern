@@ -154,13 +154,13 @@ export const CourseDetail = () => {
     <div className="min-h-screen  text-white">
       <LMSHeader/>
       {/* Header Section */}
-      <div className="bg-green-600 w-full mx-auto p-5  md:p-10">
+      <div className="bg-[#1b1834] w-full mx-auto p-5  md:p-10">
         <h1 className="text-3xl font-bold">{course.CourseName}</h1>
         <p className="mt-2 text-lg w-full md:w-[60%] ">
          {course.CourseDescription}
         </p>
         <div className="flex items-center mt-3">
-          <span className="bg-yellow-400 text-black px-2 py-1 rounded text-sm">BEGINNER</span>
+          <span className="bg-red-600 hover:bg-red-500 duration-500 transition-all text-black px-2 py-1 rounded text-sm">BEGINNER</span>
           <span className="ml-4">⭐ 0 (0 Ratings) • 75 Students enrolled</span>
         </div>
       </div>
@@ -192,7 +192,7 @@ export const CourseDetail = () => {
       </div>
 
       {/* Free Section */}
-      <h3 className="text-xl font-bold mb-4 text-green-700">{course.CoursePrice!==0?`$${course.CoursePrice}`:"Free"}</h3>
+      <h3 className="text-xl font-bold mb-4 text-purple-700">{course.CoursePrice!==0?`$${course.CoursePrice}`:"Free"}</h3>
       <div className="flex flex-col gap-3 sm:space-x-4 space-y-4 sm:space-y-0">
       <button
               onClick={toggleFavorite}
@@ -201,12 +201,12 @@ export const CourseDetail = () => {
               {isFavorite ? "Remove from Favorite" : "Add to Favorite"}
             </button>
        
-        <button onClick={getEnrolled} className="bg-green-500 text-white px-6 py-2 rounded-lg hover:bg-green-600 transition duration-300">
+        <button onClick={getEnrolled} className="bg-red-600 hover:bg-red-500 duration-500 transition-all text-white px-6 py-2 rounded-lg ">
         {isLoading?<ClipLoader size={25} color="white" loading={isLoading}/>:"Get Enrolled"}   
         </button>
       </div>
-      <p className="mt-4 text-green-600">Includes:</p>
-      <ul className="list-disc list-inside text-green-600 space-y-2 mt-2">
+      <p className="mt-4 text-red-600">Includes:</p>
+      <ul className="list-disc list-inside text-red-600 space-y-2 mt-2">
         <li>06:51:01 Hours On demand videos</li>
         <li>{course.CourseContent.length} Lessons</li>
         <li>Access on mobile and TV</li>

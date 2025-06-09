@@ -42,7 +42,7 @@ import { useLocation, useNavigate } from "react-router";
           </span>
           {/* Duration */}
           <span className="flex items-center gap-1">
-            <Clock size={16} className="text-green-600" />
+            <Clock size={16} className="text-red-600" />
             {duration}
           </span>
         </div>
@@ -64,7 +64,7 @@ import { useLocation, useNavigate } from "react-router";
       {/* Apply Button */}
       <button
         onClick={onApply}
-        className="bg-green-600 text-white px-4 py-2 rounded-lg text-sm font-medium cursor-pointer hover:bg-green-700 transition w-full sm:w-auto"
+        className="bg-purple-800 text-white px-4 py-2 rounded-lg text-sm font-medium cursor-pointer hover:bg-purple-700 transition w-full sm:w-auto"
       >
         Apply Now
       </button>

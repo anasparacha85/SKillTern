@@ -193,7 +193,7 @@ toast.error(error.FailureMessage)
       </div>
 
       {/* Save Button */}
-      <button type="submit" className="mt-6 w-full bg-green-600 text-white py-2 rounded-md flex items-center justify-center">
+      <button type="submit" className="mt-6 w-full bg-gradient-to-r from-purple-700 to-red-600 text-white py-2 rounded-md flex items-center justify-center">
      {isLoading?<ClipLoader size={25} color="white" loading={isLoading}/>:<Save className="mr-2" size={18} > Save</Save>}   
       </button>
       </form>

@@ -106,8 +106,8 @@ const findjobs = async (req, res) => {
     const data = await JobModal.aggregate([
       {
         $match: {
-          JobCategory: { $regex: new RegExp(`^${name}$`, "i") }, // Case-insensitive exact match
-          JobType: { $regex: new RegExp(`^${type}$`, "i") }
+          JobCategory: { $regex: name, $options: "i" }, // 👈 Partial + Case-insensitive
+          JobType: { $regex: type, $options: "i" },
         }
       },
       {

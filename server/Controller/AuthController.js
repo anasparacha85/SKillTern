@@ -1,11 +1,14 @@
 import User from '../Model/UserModal.js'
-import { configDotenv } from 'dotenv'
+
 import jwt from 'jsonwebtoken'
 import passport from 'passport'
 import transporter from '../Middleware/transporter.js'
 import bcrypt from 'bcrypt'
+import dotenv from 'dotenv'
+dotenv.config()
 
-configDotenv();
+
+
 
 const UserRegister=async (req,res)=>{
     try{
@@ -67,6 +70,7 @@ const Login=async (req,res,next)=>{
             
             return res.status(400).json({FailureMessage:info.message || 'Login Failed'});
         }
+        
 
         if(user.role=='Admin'){
             res.status(200).json({SuccessMessage:'Login Successfull',token:await user.generateToken(),AdminKey:process.env.ADMIN_SECRET_KEY})
@@ -83,7 +87,7 @@ const Login=async (req,res,next)=>{
 const GoogleLogin=async(req,res)=>{
     const token=await req.user.generateToken()
    const SuccessMessage='Login Successfull'
-    res.redirect(`https://anas-internee-pk.vercel.app/google-auth-success?token=${token}&SuccessMessage=${SuccessMessage}`)
+    res.redirect(`${process.env.FRONT_END_URL}/google-auth-success?token=${token}&SuccessMessage=${SuccessMessage}`)
 
     
 }
@@ -200,6 +204,7 @@ const UpdatePassword = async (req, res) => {
     }
 };
 
+
 export {UpdatePassword}
 
 export default {
@@ -209,5 +214,5 @@ export default {
     GoogleLogin,
     ForgetPassword,
     VerifyOtp,
-    UpdatePassword
-}
+    UpdatePassword,
+ }

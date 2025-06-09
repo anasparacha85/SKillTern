@@ -62,13 +62,13 @@ useEffect(()=>{
   return (
     <div className="w-full md:w-[99%]">
     <LMSHeader />
-    <ProfileHeader Heading={`/Courses/${selecteditem?selecteditem:categoryitem?categoryitem:"Not Found"}`}/>
+    <ProfileHeader Heading={`/Courses/${selecteditem?selecteditem:categoryitem?categoryitem:"Not selected"}`}/>
     <div className="flex flex-col md:flex-row p-4 bg-gray-100 min-h-screen">
       {/* Sidebar */}
       <aside className="w-full md:w-1/5 bg-white p-4 shadow-md rounded-lg">
-        <h2 className="text-xl font-bold text-green-700">Filter</h2>
+        <h2 className="text-xl font-bold text-purple-700">Filter</h2>
         <div className="mt-4">
-          <h3 className="text-green-600 font-semibold">Categories</h3>
+          <h3 className="text-purple-600 font-semibold">Categories</h3>
        <ul className="space-y-2 mt-2 text-sm">
   {Object.entries(
     courses.reduce((acc, course) => {
@@ -126,7 +126,7 @@ useEffect(()=>{
         
         {/* Content */}
         <div className="mt-3 md:mt-0 md:ml-4 flex flex-col justify-between">
-          <h3 className="text-green-700 font-bold text-lg">{course.CourseName}</h3>
+          <h3 className="text-purple-700 font-bold text-lg">{course.CourseName}</h3>
           <p className="text-gray-600 text-sm">{course.CourseDescription}</p>
           
           <div className="text-sm text-gray-500 flex gap-2 flex-wrap">
@@ -135,7 +135,7 @@ useEffect(()=>{
             <span>Beginner</span>
           </div>
           
-          <div className="text-green-600 font-bold">
+          <div className="text-red-600 font-bold">
             {course.CoursePrice == 0 && "Free"}
           </div>
         </div>

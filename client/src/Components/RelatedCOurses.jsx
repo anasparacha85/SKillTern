@@ -7,7 +7,7 @@ const RelatedCourses = ({courses}) => {
 
   return (
     <div className="mt-10 px-10">
-      <h2 className="text-2xl font-bold text-green-700 mb-4">
+      <h2 className="text-2xl font-bold text-purple-700 mb-4">
         Other Related Courses
       </h2>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">

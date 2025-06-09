@@ -39,12 +39,12 @@ export const Deletejob = () => {
    
 
   return (
-    <div>
-      <div className='flex w-full justify-center'>
+    <div className='h-[90%] overflow-y-scroll'>
+      <div className='flex w-full justify-center '>
         <h1 className='text-3xl text-green-600 font-bold text-center'>Delete a Job</h1>
         </div>
       
-        <div className='w-full flex md:justify-end justify-center' >
+        <div className='w-full flex md:justify-end justify-center ' >
 <div className='w-[75%] flex flex-col  '>
   {jobs.map((value,index)=>(
 <AdminJobCard key={value._id} title={value.JobName} job={jobs} setjob={setjobs} image={value.JobImage} type={value.JobType} duration={value.JobDuration} id={value._id} />

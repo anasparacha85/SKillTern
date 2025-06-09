@@ -21,3 +21,15 @@
     background-repeat: no-repeat;
   }
 }
+.home-menu{
+    background: radial-gradient(39.56% 48.29% at 20% 115.78%, #FF1675 0%, rgba(255, 22, 121, 0) 100%) /* warning: gradient uses a rotation that is not supported by CSS and may not behave as expected */, radial-gradient(54.23% 74.52% at 69.72% -10.08%, #FF1675 0%, rgba(255, 22, 121, 0) 100%) /* warning: gradient uses a rotation that is not supported by CSS and may not behave as expected */, radial-gradient(21.67% 31.7% at 39.72% 107.79%, rgba(74, 51, 209, 0.8) 0%, rgba(74, 51, 209, 0) 100%) /* warning: gradient uses a rotation that is not supported by CSS and may not behave as expected */, radial-gradient(40.08% 51.33% at 85.83% 24.14%, rgba(74, 51, 209, 0.8) 0%, rgba(74, 51, 209, 0) 100%) /* warning: gradient uses a rotation that is not supported by CSS and may not behave as expected */, #242145;
+}
+.banner-menu{
+    background-color: rgba(19, 15, 37, 0.5);
+}
+.skill-home-container{
+    background: radial-gradient(39.56% 48.29% at 20% 115.78%, #FF1675 0%, rgba(255, 22, 121, 0) 100%) /* warning: gradient uses a rotation that is not supported by CSS and may not behave as expected */, radial-gradient(54.23% 74.52% at 69.72% -10.08%, #FF1675 0%, rgba(255, 22, 121, 0) 100%) /* warning: gradient uses a rotation that is not supported by CSS and may not behave as expected */, radial-gradient(21.67% 31.7% at 39.72% 107.79%, rgba(74, 51, 209, 0.8) 0%, rgba(74, 51, 209, 0) 100%) /* warning: gradient uses a rotation that is not supported by CSS and may not behave as expected */, radial-gradient(40.08% 51.33% at 85.83% 24.14%, rgba(74, 51, 209, 0.8) 0%, rgba(74, 51, 209, 0) 100%) /* warning: gradient uses a rotation that is not supported by CSS and may not behave as expected */, #242145;
+}
+.skill-home-primary-container{
+    background-color: rgba(19, 15, 37, 0.5);
+}

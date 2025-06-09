@@ -81,7 +81,7 @@ console.log(error);
 
   return (
     <>
-    <div className="max-w-2xl mx-auto p-6 bg-white shadow-md rounded-lg mt-10">
+    <div className="max-w-2xl mx-auto p-6 bg-white shadow-md rounded-lg mt-10 h-[570px] overflow-y-scroll ">
        
        {/* Profile Heading */}
        <div className="text-center">
@@ -90,7 +90,7 @@ console.log(error);
          Add information about yourself to share on your profile.
        </p>
        </div>
-      
+    <div className=""> 
  <form onSubmit={onsubmit}>
        {/* Basic Information Fields */}
        <div className="flex flex-col  gap-4">
@@ -184,6 +184,7 @@ console.log(error);
          <Save className="mr-2" size={18} /> Save
        </button>
        </form>
+       </div> 
      </div>
     </>
     

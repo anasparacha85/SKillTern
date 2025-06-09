@@ -6,7 +6,7 @@ const ProfileHeader = ({Heading}) => {
   const [menuOpen, setMenuOpen] = useState(false);
 
   return (
-    <header className="bg-green-600 text-white py-4 lg:px-20 p-4">
+    <header className="bg-[rgb(20,20,46)]  text-white py-4 lg:px-20 p-4">
       <div className="container mx-auto flex justify-between items-center">
         {/* Heading */}
         <h1 className="text-2xl font-bold text-white">{Heading}</h1>

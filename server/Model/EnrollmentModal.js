@@ -1,4 +1,5 @@
 import mongoose from 'mongoose';
+import { type } from 'os';
 const EnrollmentSchema=new mongoose.Schema({
     student:{
         type:mongoose.Schema.Types.ObjectId,
@@ -10,6 +11,12 @@ const EnrollmentSchema=new mongoose.Schema({
         ref:'Course',
         required:true,
 
+
+    },
+    PaymentStatus:{
+        type:String,
+        enum:['paid','not paid'],
+        default:'not paid'
 
     }
 

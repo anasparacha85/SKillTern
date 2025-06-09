@@ -44,6 +44,8 @@ import InstructorApplications from './pages/Admin/InstructorApplications.jsx'
 import MyFavorites from './pages/LMS/MyFavorites.jsx'
 import SuccessPage from './pages/SuccessPage.jsx'
 import CancelPage from './pages/CancelPage.jsx'
+import AdminUsers from './pages/Admin/AllUsers.jsx'
+import EnrolledStudents from './pages/Admin/EnrolledStudents.jsx'
 
 
 
@@ -79,6 +81,8 @@ const Router=createBrowserRouter(createRoutesFromElements(
     <Route path='JobApplications' element={<JobApplications/>}/>
     <Route path='delete-a-job' element={<Deletejob/>}/>
     <Route path='InstructorApplications' element={<InstructorApplications/>}/>
+    <Route path='AllUsers' element={<AdminUsers/>}/>
+    <Route path='EnrolledStudents' element={<EnrolledStudents/>}/>
     </Route>
     </Route>
    

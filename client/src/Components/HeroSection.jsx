@@ -36,8 +36,8 @@ navigate('/job-portal/hiring')
       })
     }
     return (
-      <section className="bg-green-500 text-white h-screen  p-16 lg:pl-60 text-center lg:text-start bg-custom" style={{backgroundImage:`url( ${backgroundimage})`}}>
-       
+      <section className="home-menu text-white h-screen  flex justify-center items-center  " >
+       <div className="w-[80%] h-[80%] bg-[#1b1834]  rounded-3xl bg-custom px-10 py-10" style={{backgroundImage:`url( ${backgroundimage})`}}>
         <p className="text-lg mb-6">We have <span className="mx-1">
         <CountUp
   from={1}
@@ -72,19 +72,19 @@ navigate('/job-portal/hiring')
   rootMargin="-50px"
   
 /></h1>
-        <span className="bg-white text-gray-800 mt-6 py-3 px-6 text-lg rounded-[5px] ">Find a Job </span>
+        <span className="bg-[rgb(20,20,46)] text-gray-100 mt-6 py-3 px-6 text-lg rounded-[5px] ">Find a Job </span>
         <form onSubmit={handlesubmit}>
-<div className="flex flex-col lg:flex-row gap-2.5 bg-white py-10 px-2 w-full lg:w-[70%] ">  
+<div className="flex flex-col lg:flex-row gap-2.5 bg-[rgb(20,20,46)] py-10 px-2 w-full lg:w-[70%] ">  
  
- <input type="text" value={formdata.jobname} onChange={onchange} name="jobname" placeholder="eg..App Development,Backend Development" className="lg:w-[80%] text-gray-700 p-2 rounded-l bg-white border-1 border-solid border-black" />
-  <input type="text" value={formdata.jobtype} onChange={onchange} name="jobtype" placeholder="eg:Internship,full-time ,part-time etc" className="lg:w-[80%] p-2 text-gray-700  rounded-l bg-white border-1 border-solid border-black" />
-<button type="submit" className="bg-green-600 px-4 py-2 rounded-r text-white lg:w-[80%] cursor-pointer">Search</button>
+ <input type="text" value={formdata.jobname} onChange={onchange} name="jobname" placeholder="eg..App Development,Backend Development" className="lg:w-[80%] text-gray-50 p-2 rounded-l bg-gray-400 border-1 border-solid border-black" />
+  <input type="text" value={formdata.jobtype} onChange={onchange} name="jobtype" placeholder="eg:Internship,full-time ,part-time etc" className="lg:w-[80%] p-2 text-gray-50  rounded-l bg-gray-400 border-1 border-solid border-black" />
+<button type="submit" className="bg-red-500 px-4 py-2 rounded-r text-white lg:w-[80%] cursor-pointer">Search</button>
 
 
  
   </div>
   </form>
-       
+       </div>
       </section>
     );
   }

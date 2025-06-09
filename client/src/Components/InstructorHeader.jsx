@@ -5,13 +5,19 @@ import { Link } from "react-router-dom";
 const InstructorHeader = () => {
     const {user}=usestore()
   return (
-    <header className="bg-gray-700 shadow-md">
+    <header className="bg-[#242145] shadow-md">
       <div className="container mx-auto px-4 py-3 flex flex-col md:flex-row justify-between items-center">
         {/* Logo Section */}
-        <div className="  text-xl">
-         <img src="https://www.internee.pk/logo.png" alt="" className='w-40' />
-        </div>
-
+      <Link to="/" className="flex items-center text-white mr-8">
+                    <svg
+                      className="h-8 w-8 mr-2 bg-red-600 rounded-full p-2"
+                      fill="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path d="M12 2L2 19h20L12 2zm0 3.8L18.5 17H5.5L12 5.8z" />
+                    </svg>
+                    <span className="font-bold text-xl">Skilltern</span>
+                  </Link>
 
         {/* Visit Website Link */}
         <Link
