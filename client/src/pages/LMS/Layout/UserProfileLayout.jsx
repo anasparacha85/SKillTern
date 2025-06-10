@@ -8,64 +8,114 @@ import { NavLink } from "react-router-dom";
 
 const UserProfileLayout = () => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
-const {user,url}=usestore()
+  const { user } = usestore();
+
   return (
     <>
-    <LMSHeader/>
-    <ProfileHeader Heading={"User Profile"}/>
-     <div className="flex h-screen bg-gray-100">
-      {/* Sidebar */}
-      <aside
-        className={`fixed md:relative bg-gray-50 text-gray-600 w-64 p-5 transition-transform ${
-          sidebarOpen ? "translate-x-0" : "-translate-x-full"
-        } md:translate-x-0 md:w-1/4 lg:w-1/5 xl:w-1/6 h-full`}
-      >
-        {/* Close Button for Mobile */}
-        <button
-          className="absolute top-4 right-4 md:hidden"
-          onClick={() => setSidebarOpen(false)}
-        >
-          <X size={24} />
-        </button>
+      <LMSHeader />
+      <ProfileHeader Heading={"User Profile"} />
 
-        {/* User Profile Section */}
-        <div className="flex flex-col items-center mb-6">
-          <img
-             src={user?user.profilePicture:""}
-            alt="User"
-            className="w-20 h-20 rounded-full border-2 border-gray-500"
+      <div className="flex  pt-4 md:pt-0">
+        {sidebarOpen && (
+          <div
+            className="fixed inset-0 bg-black/50 bg-opacity-50 z-10 md:hidden"
+            onClick={() => setSidebarOpen(false)}
           />
-          <h2 className="text-lg font-semibold mt-2">{user?user.name:"no name"}</h2>
-        </div>
+        )}
 
-        {/* Sidebar Navigation */}
-        <nav className="space-y-4">
-          <NavLink to="/LMS/UserProfile" className="flex items-center p-2 hover:bg-gray-700 rounded-md">
-            <User className="mr-2" size={20} /> Profile
-          </NavLink>
-          <NavLink to="/LMS/UserProfile/Account" className="flex items-center p-2 hover:bg-gray-700 rounded-md">
-            <Settings className="mr-2" size={20} /> Account
-          </NavLink>
-          <NavLink to="/LMS/UserProfile/Photo" className="flex items-center p-2 hover:bg-gray-700 rounded-md">
-            <Image className="mr-2" size={20} /> Photos
-          </NavLink>
-        </nav>
-      </aside>
-
-      {/* Main Content Area */}
-      <main className="flex-1 p-6 h-full  bg-white ">
-        {/* Menu Button for Mobile */}
-        <button
-          className="md:hidden p-2 bg-gray-900 text-white rounded-md"
-          onClick={() => setSidebarOpen(true)}
+        <aside
+          className={`fixed md:relative top-0 left-0 z-20 bg-[#242145] text-white w-64 md:w-72 p-4 transition-transform duration-500 ease-in-out ${
+            sidebarOpen ? "translate-x-0" : "-translate-x-full"
+          } md:translate-x-0 min-h-screen `}
         >
-          <Menu size={24} />
-        </button>
+          {/* Close Button (Mobile) */}
+          <button
+            className="absolute top-4 right-4 md:hidden text-white hover:text-gray-300"
+            onClick={() => setSidebarOpen(false)}
+          >
+            <X size={24} />
+          </button>
 
-     <Outlet/>
-      </main>
-    </div></>
-   
+          {/* Profile Info */}
+          <div className="flex flex-col items-center mb-6 mt-4 md:mt-0">
+            <div className="relative">
+              <img
+                src={user?.profilePicture || "/api/placeholder/80/80"}
+                alt="User"
+                className="w-14 h-14 md:w-16 md:h-16 rounded-full border-2 border-gray-500 object-cover"
+              />
+            </div>
+            <h2 className="text-sm md:text-base font-semibold text-white mt-2 text-center px-2 truncate w-full">
+              {user?.name || "No Name"}
+            </h2>
+          </div>
+
+          {/* Navigation */}
+          <nav className="space-y-2">
+            <NavLink
+              to="/LMS/UserProfile"
+              className={({ isActive }) =>
+                `flex items-center p-3 rounded-lg text-sm font-medium transition-all duration-200 ${
+                  isActive 
+                    ? "bg-purple-700 text-white shadow-md" 
+                    : "hover:bg-purple-600/80 text-gray-200 hover:text-white"
+                }`
+              }
+              end
+            >
+              <User className="mr-3 flex-shrink-0" size={18} />
+              <span>Profile</span>
+            </NavLink>
+            
+            <NavLink
+              to="/LMS/UserProfile/Account"
+              className={({ isActive }) =>
+                `flex items-center p-3 rounded-lg text-sm font-medium transition-all duration-200 ${
+                  isActive 
+                    ? "bg-purple-700 text-white shadow-md" 
+                    : "hover:bg-purple-600/80 text-gray-200 hover:text-white"
+                }`
+              }
+            >
+              <Settings className="mr-3 flex-shrink-0" size={18} />
+              <span>Account</span>
+            </NavLink>
+            
+            <NavLink
+              to="/LMS/UserProfile/Photo"
+              className={({ isActive }) =>
+                `flex items-center p-3 rounded-lg text-sm font-medium transition-all duration-200 ${
+                  isActive 
+                    ? "bg-purple-700 text-white shadow-md" 
+                    : "hover:bg-purple-600/80 text-gray-200 hover:text-white"
+                }`
+              }
+            >
+              <Image className="mr-3 flex-shrink-0" size={18} />
+              <span>Photos</span>
+            </NavLink>
+          </nav>
+        </aside>
+
+        {/* Main Content */}
+        <main className="flex-1 md:ml-56 lg:ml-5  ">
+          {/* Menu Button (Mobile) */}
+          <div className="md:hidden p-4 bg-white sticky top-0 z-5 border-b border-gray-200">
+            <button
+              className="p-2 bg-[#242145] text-white rounded-lg hover:bg-purple-700 transition-colors duration-200"
+              onClick={() => setSidebarOpen(true)}
+            >
+              <Menu size={20} />
+            </button>
+          </div>
+
+          {/* Content Area */}
+          <div className="p-4 md:p-6">
+            <Outlet />
+          </div>
+        </main>
+      </div>
+    </>
   );
 };
 

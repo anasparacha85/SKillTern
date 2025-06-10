@@ -20,7 +20,7 @@ export const InstructorPanel = () => {
     
       {/* Sidebar */}
       <div
-        className={`fixed md:relative bg-[#242145] text-white w-64 p-6 h-screen space-y-6 md:block transition-transform duration-300 ${
+        className={`fixed md:relative bg-[#242145] text-white w-72 p-6 h-screen space-y-6 md:block transition-transform duration-300 ${
           isOpen ? "translate-x-0" : "-translate-x-full"
         } md:translate-x-0`}
       >
@@ -30,7 +30,7 @@ export const InstructorPanel = () => {
           <NavLink
           to="/LMS/Instructor"
           className={({ isActive }) =>
-            `flex items-center gap-2 p-3 rounded-lg transition ${
+            `flex items-center gap-2 p-3 text-sm rounded-lg transition ${
               isActive ? "bg-purple-600" : "hover:bg-gray-700"
             }`
           }
@@ -64,7 +64,7 @@ export const InstructorPanel = () => {
           <NavLink
             to="/LMS/UserProfile"
             className={({ isActive }) =>
-              `flex items-center gap-2 p-3 rounded-lg transition ${
+              `flex items-center gap-2 text-sm p-3 rounded-lg transition ${
                 isActive ? "bg-yellow-600" : "hover:bg-gray-700"
               }`
             }

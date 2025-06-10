@@ -24,7 +24,7 @@ else{
 
 }
   return (
-    <header className="bg-[#1b1834]  sticky top-0 p-4 ">
+    <header className="bg-[#1b1834] z-[9999] sticky top-0 p-4 ">
       <div className="max-w-6xl mx-auto flex items-center justify-between">
         {/* Logo */}
         <div className="text-xl w-1/5">

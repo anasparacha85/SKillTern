@@ -4,7 +4,7 @@ import { toast } from "react-toastify";
 import { Link } from "react-router-dom";
 import { StarIcon, HeartIcon } from "lucide-react";
 
-const CourseCard = ({ image, title, description, price, id ,rout,Label}) => {
+const CourseCard = ({ image, title, description, price, id, rout, Label }) => {
   const { url, jwtToken, setUserLoginOpen } = usestore();
   const [isFavorite, setIsFavorite] = useState(false);
 
@@ -51,7 +51,7 @@ const CourseCard = ({ image, title, description, price, id ,rout,Label}) => {
       .catch(error => console.log("Error:", error));
   };
   return (
-    <div className="max-w-sm bg-white rounded-2xl shadow-lg overflow-hidden transform hover:scale-105 transition-all duration-300 relative">
+    <div className="max-w-md bg-white rounded-2xl cursor-pointer shadow-xl overflow-hidden transform hover:scale-105 transition-all duration-500 relative">
       {/* Course Image */}
       <div className="relative">
         <img src={image} alt={title} className="w-full h-48 object-fill" />
@@ -65,9 +65,8 @@ const CourseCard = ({ image, title, description, price, id ,rout,Label}) => {
           className="absolute top-3 right-3 bg-white p-2 rounded-full shadow-md transition-all duration-300"
         >
           <HeartIcon
-            className={`w-6 h-6 ${
-              isFavorite ? "text-purple-700 fill-purple-700" : "text-gray-400"
-            }`}
+            className={`w-6 h-6 ${isFavorite ? "text-purple-700 fill-purple-700" : "text-gray-400"
+              }`}
           />
         </button>
       </div>
@@ -75,7 +74,7 @@ const CourseCard = ({ image, title, description, price, id ,rout,Label}) => {
       {/* Course Details */}
       <div className="p-5">
         <h3 className="text-xl font-bold text-gray-800 mb-2">{title}</h3>
-        <p className="text-gray-600 text-sm mb-3">{description.substring(0, 90)}...</p>
+        <p className="text-gray-600 text-sm mb-3">{description.slice(0, 90)}...</p>
 
         {/* Star Rating */}
         <div className="flex items-center space-x-1 mb-3">
