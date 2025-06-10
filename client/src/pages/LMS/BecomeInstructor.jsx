@@ -45,7 +45,7 @@ export const BecomeInstructorForm = () => {
         return
       }
       setFormData({ ...formData, document: file })
-      setFileName(file.name)
+      // setFileName(file.name)
     }
   }
 
