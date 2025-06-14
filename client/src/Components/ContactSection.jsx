@@ -62,7 +62,7 @@ const ContactSection = () => {
               </div>
 
               {/* Call to Action */}
-              <div className="bg-gradient-to-r from-green-500 to-blue-500 rounded-xl p-6 text-white mb-6">
+              <div className="bg-gradient-to-r home-menu rounded-xl p-6 text-white mb-6">
                 <h4 className="font-semibold mb-2">Ready to Connect?</h4>
                 <p className="text-sm mb-4 text-green-100">
                   Don't hesitate to reach out. We're excited to hear from you!
@@ -172,7 +172,7 @@ const ContactSection = () => {
 
                 <button
                   type="submit"
-                  className="w-full bg-gradient-to-r from-green-600 to-blue-600 text-white py-4 px-6 rounded-lg font-semibold hover:from-green-700 hover:to-blue-700 transition-all duration-200 flex items-center justify-center gap-2"
+                  className="w-full home-menu text-white py-4 px-6 rounded-lg font-semibold hover:from-green-700 hover:to-blue-700 transition-all duration-200 flex items-center justify-center gap-2"
                 >
                   <Send className="h-5 w-5" />
                   Send Message

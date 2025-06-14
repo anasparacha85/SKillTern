@@ -32,4 +32,10 @@ adminRouter.route('/ToggleStatus')
 adminRouter.route('/GetEnrolledStudents')
   .get(passport.authenticate('jwt',{session:false}),RoleAccess('Admin'),AdminController.GetEnrolledStudents)
 
+adminRouter.route('/GetRoles')
+.get(passport.authenticate('jwt',{session:false}),RoleAccess('Admin'),AdminController.getRoles)
+
+adminRouter.route('/ChangeROle')
+.patch(passport.authenticate('jwt',{session:false}),RoleAccess('Admin'),AdminController.ChangeRole)
+
 export default adminRouter;

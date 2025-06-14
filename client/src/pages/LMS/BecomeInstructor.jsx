@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from "react"
 import { usestore } from "../../Store/ContextStore"
 import { toast } from "react-toastify"
 import { ClipboardCheck, FileText, Info, Upload } from "lucide-react"
+import { useNavigate } from "react-router"
 
 export const BecomeInstructorForm = () => {
   const [formData, setFormData] = useState({
@@ -11,6 +12,7 @@ export const BecomeInstructorForm = () => {
     document: null,
   })
   const [fileName, setFileName] = useState("No file chosen")
+  const navigate=useNavigate()
 
   const formref = useRef()
   const pendref = useRef()
@@ -22,7 +24,9 @@ export const BecomeInstructorForm = () => {
       pendref.current.classList.remove("hidden")
     }
   }, [user.InstructorStatus, Instructors])
-
+useEffect(()=>{
+  localStorage.getItem("instructor")=="true" && navigate('/LMS/Instructor/upload')
+},[user, localStorage.getItem("instructor")])
   const handleChange = (e) => {
     const { name, value } = e.target
     if (name === "name" || name === "email") return
@@ -31,6 +35,8 @@ export const BecomeInstructorForm = () => {
 
   const handleFileChange = (e) => {
     const file = e.target.files[0]
+    console.log(file);
+    
     if (file) {
       const validExtensions = [
         "application/pdf",
@@ -45,7 +51,7 @@ export const BecomeInstructorForm = () => {
         return
       }
       setFormData({ ...formData, document: file })
-      // setFileName(file.name)
+       setFileName(file.name)
     }
   }
 
@@ -251,7 +257,7 @@ export const BecomeInstructorForm = () => {
           <div className="pt-4">
             <button
               type="submit"
-              className="bg-primary hover:bg-primary/90 text-white px-6 py-3 rounded-lg font-medium transition-colors w-full md:w-auto"
+              className="bg-purple-700 hover:bg-purple-800 text-white px-6 py-3 rounded-lg font-medium transition-colors w-full md:w-auto"
             >
               Submit Application
             </button>

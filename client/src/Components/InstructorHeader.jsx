@@ -21,7 +21,7 @@ const InstructorHeader = () => {
 
         {/* Visit Website Link */}
         <Link
-          to="/"
+          to="/LMS"
           className="mt-4 md:mt-0 px-4 py-2 text-gray-100 bg-gray-600 hover:bg-gray-800"
         >
           Visit website

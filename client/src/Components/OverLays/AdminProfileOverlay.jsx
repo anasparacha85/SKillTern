@@ -14,13 +14,13 @@ const AdminProfileOverlay = () => {
        <div className="absolute top-full right-0 w-[350px] bg-gray-50 text-gray-700 p-2 rounded-md shadow-lg">
                      <div className="flex items-center p-3">
             <img
-              src={user?user.profilePicture.startsWith("http")?user.profilePicture:`${url}/${user.profilePicture}`:""}
+              src={user?.profilePicture}
               alt="User"
               className="w-14 h-14 rounded-full mr-4"
             />
             <div>
-              <h4 className="text-lg text-black">{user.name}</h4>
-              <h4 className="text-gray-500">{user.email}</h4>
+              <h4 className="text-lg text-black">{user?.name}</h4>
+              <h4 className="text-gray-500">{user?.email}</h4>
             </div>
           </div>
           

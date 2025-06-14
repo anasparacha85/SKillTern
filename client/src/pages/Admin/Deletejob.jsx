@@ -39,19 +39,24 @@ export const Deletejob = () => {
    
 
   return (
-    <div className='h-[90%] overflow-y-scroll'>
-      <div className='flex w-full justify-center '>
-        <h1 className='text-3xl text-green-600 font-bold text-center'>Delete a Job</h1>
+    <div className='h-[90%] '>
+         <div className='w-[100%] mt-2 flex justify-center'>
+      <div className="bg-gradient-to-r w-[700px]  from-blue-700 to-purple-900 text-white p-6">
+          <h1 className="text-2xl font-bold mb-2">Delete a Job</h1>
+          <p className="text-blue-100">Select the job your want to delete</p>
         </div>
-      
-        <div className='w-full flex md:justify-end justify-center ' >
-<div className='w-[75%] flex flex-col  '>
-  {jobs.map((value,index)=>(
+        </div>
+      <div className='w-[100%] flex justify-center'>
+        
+        <div className='w-[700px] h-[500px] overflow-y-scroll' >
+<div className='w-full flex flex-col  '>
+  {jobs?.map((value,index)=>(
 <AdminJobCard key={value._id} title={value.JobName} job={jobs} setjob={setjobs} image={value.JobImage} type={value.JobType} duration={value.JobDuration} id={value._id} />
   )
 
   )}
 
+</div>
 </div>
 </div>
       </div>

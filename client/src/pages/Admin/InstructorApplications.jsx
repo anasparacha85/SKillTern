@@ -85,7 +85,7 @@ export const InstructorApplications = () => {
       }
     
   return (
-    <div className="lg:max-w-6xl w-screen lg:ml-80 p-6 bg-white shadow-md rounded-lg mt-10 overflow-x-scroll">
+    <div className="lg:max-w-6xl w-screen lg:ml-80 p-6 bg-white shadow-md rounded-lg mt-10 overflow-x-scroll h-[580px] overflow-y-scroll">
        
     <h1 className="text-2xl font-bold mb-4">Instructor Applications</h1>
     {loading ? (
@@ -111,7 +111,7 @@ export const InstructorApplications = () => {
             </tr>
           </thead>
           <tbody>
-            {applications.map((app) => (
+            {applications?.map((app) => (
               <tr key={app._id} className="hover:bg-gray-50">
                 <td className="border-b p-2">{app.name}</td>
                 <td className="border-b p-2">{app.email}</td>

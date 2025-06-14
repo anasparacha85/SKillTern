@@ -11,6 +11,10 @@ const BecomeInsrtuctor=async(req,res)=>{
        if(finddata){
         return res.status(200).json({FailureMessage:"You have Already Applied to become a instructor"})
        }
+       const findphone=await Instructor.findOne({phone:phone});
+       if(findphone){
+        return res.status(400).json({FailureMessage:"This phone number have already applied.."})
+       }
        const savedata=await Instructor.create({name,email,address,phone,message,document:req.file.path,status:'pending'})
 
        const userdata=await User.updateOne({email:savedata.email},{$set:{InstructorStatus:"pending"}})

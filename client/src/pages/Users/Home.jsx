@@ -27,8 +27,8 @@ export const UserHome = () => {
   if (isLoading) { return <div className='h-screen w-screen flex justify-center items-center '><ClipLoader size={50} color='blue' loading={isLoading} /></div> }
   return (
     <>
-      <div className='sticky top-0 z-50'>
-        <UserHeader /></div>
+   
+        <UserHeader />
       <div className='overflow-x-hidden  '>
 
         <div className='home-menu h-full'>
@@ -60,10 +60,10 @@ export const UserHome = () => {
         <div className='mb-20'>
           <Services />
         </div>
-        {JobsCategories ? <>
+        {JobsCategories?.length>0 ? <>
           <h1 className='text-3xl sm:text-5xl font-extrabold text-blue-950  text-center mb-10'>Explore Our Jobs</h1>
           <div className='grid lg:grid-cols-3 grid-cols-1 md:px-20 gap-10 px-5'>
-            {JobsCategories.map((value, index) => (
+            {JobsCategories?.map((value, index) => (
 
 
               <Card key={index} image={value.CategoryImage} title={value.JobCategory} Category={value.JobCategory} />

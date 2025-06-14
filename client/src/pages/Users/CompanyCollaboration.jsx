@@ -11,7 +11,9 @@ export const CompanyCollaboration = () => {
       <UserHeader />
 
       {/* Hero Section */}
-      <div className="bg-gradient-to-r from-blue-800 to-purple-900 text-white py-20">
+      <div className='home-menu h-full'>
+        <main className="p-6 sm:p-10 md:p-16 lg:p-20">
+       <div className="bg-[#1b1834] p-6 sm:p-10 md:p-16 lg:p-20 rounded-3xl">
         <div className="container mx-auto px-6">
           <div className="max-w-4xl mx-auto text-center">
             <div className="flex justify-center mb-6">
@@ -19,13 +21,13 @@ export const CompanyCollaboration = () => {
                 <Handshake className="h-12 w-12" />
               </div>
             </div>
-            <h1 className="text-4xl md:text-5xl font-bold mb-6 leading-tight">Partner With Us to Find Top Talent</h1>
-            <p className="text-xl text-blue-100 mb-8 leading-relaxed max-w-3xl mx-auto">
+            <h1 className="text-4xl md:text-5xl text-white font-bold mb-6 leading-tight">Partner With Us to Find Top Talent</h1>
+            <p className="text-xl text-gray-100 mb-8 leading-relaxed max-w-3xl mx-auto">
               Our mission is to connect exceptional candidates with forward-thinking companies. Let's create a
               partnership that drives mutual success and exponential growth for your organization.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <button className="bg-white text-blue-600 px-8 py-4 rounded-lg font-semibold hover:bg-gray-100 transition-colors flex items-center gap-2 text-lg">
+              <button className="bg-white text-red-600 px-8 py-4 rounded-lg font-semibold hover:bg-gray-100 transition-colors flex items-center gap-2 text-lg">
                 <Users className="h-5 w-5" />
                 Start Partnership
               </button>
@@ -35,6 +37,9 @@ export const CompanyCollaboration = () => {
             </div>
           </div>
         </div>
+      </div>
+       
+      </main>
       </div>
 
       {/* Value Proposition Section */}
@@ -189,7 +194,7 @@ export const CompanyCollaboration = () => {
               Join our network of successful companies and discover how we can help you find the perfect candidates for
               your team.
             </p>
-            <button className="bg-blue-600 text-white px-8 py-4 rounded-lg font-semibold hover:bg-blue-700 transition-colors flex items-center gap-2 mx-auto text-lg">
+            <button className="bg-red-600 text-white px-8 py-4 rounded-lg font-semibold hover:bg-red-700 transition-colors flex items-center gap-2 mx-auto text-lg">
               Get Started Today
               <ArrowRight className="h-5 w-5" />
             </button>

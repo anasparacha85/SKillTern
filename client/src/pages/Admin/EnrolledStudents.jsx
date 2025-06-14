@@ -64,7 +64,7 @@ const EnrolledStudents = () => {
               </tr>
             </thead>
             <tbody>
-              {enrollments.map((enrollment) => (
+              {enrollments?.map((enrollment) => (
                 <tr key={enrollment._id} className="border-t hover:bg-gray-50">
                   <td className="p-3">
                     <img

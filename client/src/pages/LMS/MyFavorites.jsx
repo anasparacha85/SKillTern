@@ -81,7 +81,7 @@ export const MyFavorites = () => {
       <div className="flex flex-col sm:flex-row gap-3">
         <button
           onClick={() => (window.location.href = "/LMS/courses")}
-          className="flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg font-medium transition-colors"
+          className="flex items-center gap-2 bg-purple-700 hover:bg-purple-800 text-white px-6 py-3 rounded-lg font-medium transition-colors"
         >
           <Search className="h-4 w-4" />
           Browse Courses
@@ -107,7 +107,7 @@ export const MyFavorites = () => {
       <p className="text-gray-600 text-center mb-6 max-w-md">{error}</p>
       <button
         onClick={getFavoriteCourses}
-        className="flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg font-medium transition-colors"
+        className="flex items-center gap-2 bg-purple-700 hover:bg-purple-800 text-white px-6 py-3 rounded-lg font-medium transition-colors"
       >
         <RefreshCw className="h-4 w-4" />
         Try Again

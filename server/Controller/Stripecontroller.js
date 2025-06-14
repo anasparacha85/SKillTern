@@ -12,7 +12,7 @@ const createCheckoutSession=async(req,res)=>{
         const user=req.user;
         const course=await CourseModal.findOne({_id:courseId});
         
-        if(course.CoursePrice<0 || course.CoursePrice==0){
+        if(course.CoursePrice === 0 ||course.CoursePrice<=0){
             return res.status(400).json({FailureMessage:"This Course is Free"})
         }
         const Enrolled=await EnrollmentModel.findOne({student:user._id,course:courseId})

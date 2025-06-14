@@ -115,7 +115,7 @@ export const Account = () => {
     <div className=" p-3">
       <div className="bg-white shadow-lg rounded-xl overflow-hidden">
         {/* Header Section */}
-        <div className="bg-gradient-to-r from-blue-600 to-purple-600 text-white p-6">
+        <div className="bg-gradient-to-r from-blue-700 to-purple-900 text-white p-6">
           <h1 className="text-2xl font-bold mb-2">Account Settings</h1>
           <p className="text-blue-100">Manage your account credentials and security settings</p>
         </div>
@@ -154,6 +154,7 @@ export const Account = () => {
               <label className="block text-sm font-medium text-gray-700 mb-1">Current Password</label>
               <div className="relative">
                 <input
+                disabled={!user.password?true:false}
                   name="password"
                   value={formdata.password}
                   onChange={onchange}
@@ -178,6 +179,7 @@ export const Account = () => {
               <label className="block text-sm font-medium text-gray-700 mb-1">New Password</label>
               <div className="relative">
                 <input
+                   disabled={!user.password?true:false}
                   name="NewPassword"
                   type={showPassword.new ? "text" : "password"}
                   value={formdata.NewPassword}
@@ -232,6 +234,7 @@ export const Account = () => {
               <label className="block text-sm font-medium text-gray-700 mb-1">Confirm New Password</label>
               <div className="relative">
                 <input
+                   disabled={!user.password?true:false}
                   name="ConfirmNewPassword"
                   value={formdata.ConfirmNewPassword}
                   onChange={onchange}

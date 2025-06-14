@@ -9,31 +9,31 @@ export const Profile = () => {
   const [italic, setItalic] = useState(false)
   const { user, url, jwtToken, setUser, isLoading, setisLoading } = usestore()
 
-  const space = user ? user.name.indexOf(" ") : " "
+  const space = user ? user?.name?.indexOf(" ") : " "
 
   const [formdata, setformdata] = useState({
-    FirstName: user.name.substring(0, space),
-    LastName: user.name.substring(space + 1),
-    BioGraphy: user.BioGraphy,
-    Linkedin: user.Linkedin,
-    Facebook: user.Facebook,
-    Instagram: user.Instagram,
-    Age: user.Age,
+    FirstName: user?.name?.substring(0, space),
+    LastName: user?.name?.substring(space + 1),
+    BioGraphy: user?.BioGraphy,
+    Linkedin: user?.Linkedin,
+    Facebook: user?.Facebook,
+    Instagram: user?.Instagram,
+    Age: user?.Age,
   })
 
   // Function to apply formatting
   const applyFormatting = (style) => {
     const textarea = document.getElementById("bioText")
-    const start = textarea.selectionStart
-    const end = textarea.selectionEnd
-    const selectedText = formdata.BioGraphy.substring(start, end)
+    const start = textarea?.selectionStart
+    const end = textarea?.selectionEnd
+    const selectedText = formdata?.BioGraphy?.substring(start, end)
 
     if (selectedText) {
-      let updatedText = formdata.BioGraphy
+      let updatedText = formdata?.BioGraphy
       if (style === "bold") {
-        updatedText = formdata.BioGraphy.substring(0, start) + `**${selectedText}**` + formdata.BioGraphy.substring(end)
+        updatedText = formdata?.BioGraphy?.substring(0, start) + `**${selectedText}**` + formdata?.BioGraphy?.substring(end)
       } else if (style === "italic") {
-        updatedText = formdata.BioGraphy.substring(0, start) + `*${selectedText}*` + formdata.BioGraphy.substring(end)
+        updatedText = formdata?.BioGraphy?.substring(0, start) + `*${selectedText}*` + formdata?.BioGraphy?.substring(end)
       }
       setformdata((prev) => ({ ...prev, BioGraphy: updatedText }))
     }
@@ -78,7 +78,7 @@ export const Profile = () => {
   return (
     <div className="  ">
       <div className="bg-white shadow-lg rounded-xl overflow-hidden">
-        <div className="bg-gradient-to-r from-blue-600 to-purple-600 text-white md:p-8 p-6">
+        <div className="bg-gradient-to-r from-blue-700 to-purple-900 text-white md:p-8 p-6">
           <div className="flex md:items-center items-start md:flex-row flex-col  gap-4">
             <div className="bg-white/20 p-3 rounded-full">
               <User className="h-8 w-8" />
@@ -104,7 +104,7 @@ export const Profile = () => {
                 <label className="block text-sm font-medium text-gray-700 mb-2">First Name</label>
                 <input
                   name="FirstName"
-                  value={formdata.FirstName}
+                  value={formdata?.FirstName}
                   type="text"
                   onChange={onchange}
                   placeholder="Enter your first name"
@@ -116,7 +116,7 @@ export const Profile = () => {
                 <label className="block text-sm font-medium text-gray-700 mb-2">Last Name</label>
                 <input
                   name="LastName"
-                  value={formdata.LastName}
+                  value={formdata?.LastName}
                   onChange={onchange}
                   type="text"
                   placeholder="Enter your last name"
@@ -133,7 +133,7 @@ export const Profile = () => {
               <input
                 name="Age"
                 type="number"
-                value={formdata.Age}
+                value={formdata?.Age}
                 onChange={onchange}
                 placeholder="Enter your age"
                 className="w-full md:w-1/3 p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
@@ -172,7 +172,7 @@ export const Profile = () => {
               <textarea
                 name="BioGraphy"
                 id="bioText"
-                value={formdata.BioGraphy}
+                value={formdata?.BioGraphy}
                 onChange={(e) => setformdata((prev) => ({ ...prev, BioGraphy: e.target.value }))}
                 rows="6"
                 className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all resize-none"

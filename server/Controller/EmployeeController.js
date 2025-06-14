@@ -39,7 +39,7 @@ const ApplyEmplooyee = async (req, res) => {
     const findjobtype = await JobModal.findOne({ JobName: jobPosition });
 
     const info = await transporter.sendMail({
-      from: "'AnasInternee.pk' <amiranas761@gmail.com>",
+      from: "'SkillTern' <amiranas761@gmail.com>",
       to: email,
       subject: `${jobPosition} ${findjobtype.JobType} Application Viewed`,
       html: `<p>Dear ${name}, <br>We hope you are doing well. We are pleased to inform you that we have successfully received your application for the ${jobPosition} position at <strong>Anas Internee.pk</strong>. We truly appreciate the time and effort you put into submitting your application and sharing your qualifications with us.
@@ -71,7 +71,7 @@ Thank you once again for your interest in joining <strong>Anas Internee.pk</stro
     res
       .status(500)
       .json({ FailureMessage: "Internal Server Error from Applied Employees" });
-    console.log(error);
+    console.log("job application error",error);
   }
 };
 

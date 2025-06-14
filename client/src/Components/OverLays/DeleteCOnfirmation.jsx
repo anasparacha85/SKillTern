@@ -9,12 +9,12 @@ const DeleteConfirmation = ({ isOpen, onClose, onConfirm, item }) => {
         <h2 className="text-lg font-semibold text-red-600">Are you sure?</h2>
         <p className="mt-2 text-gray-700">
           Do you really want to delete{" "}
-          <span className="font-bold">{item.details.Title}</span> 
+          <span className="font-bold">{item?.details?.Title}</span> 
         </p>
         <ul className="mt-3 text-sm text-gray-600">
           {Object.keys(item.details).map((key) => (
             <li key={key}>
-              <span className="font-semibold">{key}:</span> {item.details[key]}
+              <span className="font-semibold">{key}:</span> {item?.details[key]}
             </li>
           ))}
         </ul>
@@ -27,7 +27,7 @@ const DeleteConfirmation = ({ isOpen, onClose, onConfirm, item }) => {
             Cancel
           </button>
           <button
-            onClick={() => onConfirm(item.details)}
+            onClick={() => onConfirm(item?.details)}
             className="px-4 py-2 bg-red-600 text-white rounded hover:bg-red-700"
           >
             Delete

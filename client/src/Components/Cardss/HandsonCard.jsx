@@ -2,7 +2,7 @@ import React from 'react'
 
 const HandsonCard = ({img,h1,h3}) => {
   return (
-    <div className='w-60  py-10 flex flex-col justify-center border-2 border-solid border-green-600'>
+    <div className='w-60  py-10 flex flex-col justify-center border-2 border-solid border-purple-700 rounded-[30px]'>
         <div className='w-full flex justify-center mb-3'>
         <img width="40" height="40" src={img} alt="system-information"/>
         </div>

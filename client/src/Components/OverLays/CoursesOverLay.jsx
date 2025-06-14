@@ -12,10 +12,10 @@ const CoursesOverLay = () => {
   }, []);
 
   // Group courses by category
-  const groupedCourses = courses.reduce((acc, course) => {
+  const groupedCourses = courses?.reduce((acc, course) => {
     console.log('hello world acc',acc," hello world course",course);
     
-    const category = course.CourseCategory || "Uncategorized";
+    const category = course?.CourseCategory || "Uncategorized";
     if (!acc[category]) acc[category] = [];
     acc[category].push(course);
     return acc;

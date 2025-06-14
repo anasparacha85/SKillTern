@@ -1,148 +1,181 @@
-import React, { useEffect,useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { usestore } from '../../Store/ContextStore'
 import Aos from 'aos'
 import 'aos/dist/aos.css'
-import BaseInput from '../../Components/Inputs/BaseInput'
 import { toast } from 'react-toastify'
-
+import { Mail, Lock, Eye, EyeOff, Key, User } from 'lucide-react'
 
 const Signup = () => {
-  const {url,AdminLoginOpen,setAdminLoginOpen,AdminSignupOpen,setAdminSignupOpen,InterneeLoginOpen,setInterneeLoginOpen,InterneeSignupOpen,setInterneeSignupOpen,SaveTokenToLs,SaveAdminKeyToLs}=usestore()
-   const [FailureMessage, setFailureMessage] = useState(null)
-   const [SuccessMessage, setSuccessMessage] = useState(null)
+  const {
+    url,
+    AdminLoginOpen,
+    setAdminLoginOpen,
+    AdminSignupOpen,
+    setAdminSignupOpen,
+    SaveTokenToLs,
+    SaveAdminKeyToLs
+  } = usestore()
 
-    const [user, setuser] = useState({name:"",email:"",password:"",ConfirmPassword:"",AdminKey:""})
-    const onchange=(e)=>{
-        const {name,value}=e.target;
-        setuser({...user,[name]:value})
+  const [user, setuser] = useState({ name: "", email: "", password: "", ConfirmPassword: "", AdminKey: "" })
+  const [FailureMessage, setFailureMessage] = useState(null)
+  const [SuccessMessage, setSuccessMessage] = useState(null)
+  const [showPassword, setShowPassword] = useState({ password: false, confirm: false, key: false })
 
-    }
-
-    const onsubmit=(e)=>{
-e.preventDefault();
-fetch(`${url}/Api/Auth/Admin/Register`,{
-  method:'POST',
-  body:JSON.stringify(user),
-  headers:{
-    'Content-Type':'application/json'
-  },
- 
-}).then((response)=>{
-return response.json()
-}).then((data)=>{
-  console.log(data);
-  if(data.SuccessMessage){
-    setSuccessMessage(data.SuccessMessage)
-    toast.success(data.SuccessMessage)
-    setuser({name:"",email:"",password:"",ConfirmPassword:"",AdminKey:""})
-    setAdminSignupOpen(false)
-    setAdminLoginOpen(true)
+  const togglePasswordVisibility = (field) => {
+    setShowPassword(prev => ({ ...prev, [field]: !prev[field] }))
   }
- 
-  if(data.FailureMessage){
-    setFailureMessage(data.FailureMessage)
-    toast.error(data.FailureMessage)
+
+  const onchange = (e) => {
+    const { name, value } = e.target;
+    setuser({ ...user, [name]: value })
   }
-  
-  
-  
-}).catch((error)=>{
- toast.error(error.FailureMessage)
-  
-})
-    }
-   useEffect(()=>{
-    Aos.init()
-   },[])
-    const closeModal=()=>{
-        setAdminSignupOpen(false)
-    }
-    if(!AdminSignupOpen) return null;
- 
-    return (
-    <div>
-       {/* Modal */}
-       
-       <div className="fixed inset-0 bg-black/10  flex items-start justify-center z-50 " 
-   style={{opacity:"10px"}}
-   >
-    
-      <div data-aos="fade-down"
-     data-aos-easing="linear"
-     data-aos-duration="500" className="bg-white rounded-lg w-[500px] py-6 px-4 relative mt-5">
-        <button
-          className="absolute top-2 right-2 text-gray-500 hover:text-gray-800"
-          onClick={closeModal}
-        >
-          ✕
-        </button>
-            <h2 className="text-2xl font-semibold text-start mb-6">Signup as Admin</h2>
-          
-            <hr />
-            {SuccessMessage?<div className='w-full flex justify-center bg-green-600 text-white'>{SuccessMessage}</div>
-           :FailureMessage?<div className='w-full flex justify-center bg-red-600 text-white'>{FailureMessage}</div>:
-           <div></div>
-           }
-            <br />
-            <form onSubmit={onsubmit}>
-            <div className="mb-4">
-                <label htmlFor="password" className="block text-sm font-medium text-gray-700">
-                  Name
-                </label>
-               <BaseInput type='text' placeholder='Enter your Name' value={user.name} name='name' onchange={onchange} />
-              </div>
-              <div className="mb-4">
-                <label htmlFor="email" className="block text-sm font-medium text-gray-700">
-                  Email
-                </label>
-               <BaseInput type='email' placeholder='Enter Your Email' value={user.email} name='email' onchange={onchange}/>
-              </div>
 
-              <div className="mb-4">
-                <label htmlFor="password" className="block text-sm font-medium text-gray-700">
-                  Password
-                </label>
-                <BaseInput type='password' placeholder='Enter Your password' value={user.password} name='password' onchange={onchange}/>
-              </div>
+  const onsubmit = (e) => {
+    e.preventDefault()
+    fetch(`${url}/Api/Auth/Admin/Register`, {
+      method: 'POST',
+      body: JSON.stringify(user),
+      headers: { 'Content-Type': 'application/json' },
+    }).then(res => res.json())
+      .then(data => {
+        if (data.SuccessMessage) {
+          setSuccessMessage(data.SuccessMessage)
+          toast.success(data.SuccessMessage)
+          setuser({ name: "", email: "", password: "", ConfirmPassword: "", AdminKey: "" })
+          setAdminSignupOpen(false)
+          setAdminLoginOpen(true)
+        } else if (data.FailureMessage) {
+          setFailureMessage(data.FailureMessage)
+          toast.error(data.FailureMessage)
+        }
+      }).catch(err => {
+        toast.error(err.message || 'Something went wrong')
+      })
+  }
 
-              <div className="mb-6">
-                <label htmlFor="password" className="block text-sm font-medium text-gray-700">
-                Confirm  Password
-                </label>
-                <BaseInput type='password' placeholder='Enter Your password' value={user.ConfirmPassword} name='ConfirmPassword' onchange={onchange}/>
+  useEffect(() => { Aos.init() }, [])
+  const closeModal = () => setAdminSignupOpen(false)
+  if (!AdminSignupOpen) return null;
 
-              </div>
-              
-              <div className="mb-6">
-                <label htmlFor="Admin key" className="block text-sm font-medium text-gray-700">
-               Secret Admin Key
-                </label>
-                <BaseInput type='password' placeholder='Enter Secret Admin Key ' value={user.AdminKey} name='AdminKey' onchange={onchange}/>
+  return (
+    <div className="fixed inset-0 bg-black/10 flex items-start justify-center z-50">
+      <div data-aos="fade-down" data-aos-easing="linear" data-aos-duration="500"
+        className="bg-[#242145] rounded-xl w-[500px] py-8 px-6 shadow-xl relative mt-8">
 
-              </div>
+        <button className="absolute top-2 right-2 text-gray-300 hover:text-gray-800" onClick={closeModal}>✕</button>
+        <h2 className="text-2xl font-bold text-start mb-6 text-gray-300">Signup as Admin</h2>
+        <hr className="mb-4 text-white" />
 
-              <button
-                type="submit"
-                className="w-full bg-green-500 text-white py-3 rounded-md hover:bg-green-600 transition"
-              >
-                Signup
-              </button>
-            </form>
+        {SuccessMessage && <div className="w-full py-2 text-center bg-green-100 text-green-700 rounded-md mb-4">{SuccessMessage}</div>}
+        {FailureMessage && <div className="w-full py-2 text-center bg-red-100 text-red-700 rounded-md mb-4">{FailureMessage}</div>}
 
-            <div className="mt-4 text-center">
-              <p className="text-sm">
-                Already have an account?{" "}
-                <button className="text-green-500 cursor-pointer" onClick={() => {setAdminSignupOpen(false);setAdminLoginOpen(true)}}>
-                  Login
-                </button>
-              </p>
+        <form onSubmit={onsubmit} className="space-y-5">
+          {/* Name */}
+          <div>
+            <label className="block text-sm font-medium text-gray-300 mb-1">Full Name</label>
+            <div className="relative">
+              <input
+                type="text"
+                name="name"
+                value={user.name}
+                onChange={onchange}
+                placeholder="Enter your name"
+                className="w-full p-3 pl-10 border border-gray-500 rounded-md focus:outline-none text-gray-400 placeholder:text-gray-400 focus:ring-2 focus:ring-purple-500"
+              />
+              <User className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-300" />
             </div>
-
-           
           </div>
+
+          {/* Email */}
+          <div>
+            <label className="block text-sm font-medium text-gray-300 mb-1">Email Address</label>
+            <div className="relative">
+              <input
+                type="email"
+                name="email"
+                value={user.email}
+                onChange={onchange}
+                placeholder="Enter your email"
+                 className="w-full p-3 pl-10 border border-gray-500 rounded-md focus:outline-none text-gray-400 placeholder:text-gray-400 focus:ring-2 focus:ring-purple-500"
+              />
+              <Mail className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-300" />
+            </div>
+          </div>
+
+          {/* Password */}
+          <div>
+            <label className="block text-sm font-medium text-gray-300 mb-1">Password</label>
+            <div className="relative">
+              <input
+                type={showPassword.password ? "text" : "password"}
+                name="password"
+                value={user.password}
+                onChange={onchange}
+                placeholder="Enter password"
+                className="w-full p-3 pl-10 border border-gray-500 rounded-md focus:outline-none text-gray-400 placeholder:text-gray-400 focus:ring-2 focus:ring-purple-500"
+              />
+              <Lock className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-300" />
+              <button type="button" onClick={() => togglePasswordVisibility("password")} className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-500">
+                {showPassword.password ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
+              </button>
+            </div>
+          </div>
+
+          {/* Confirm Password */}
+          <div>
+            <label className="block text-sm font-medium text-gray-300 mb-1">Confirm Password</label>
+            <div className="relative">
+              <input
+                type={showPassword.confirm ? "text" : "password"}
+                name="ConfirmPassword"
+                value={user.ConfirmPassword}
+                onChange={onchange}
+                placeholder="Confirm password"
+                 className="w-full p-3 pl-10 border border-gray-500 rounded-md focus:outline-none text-gray-400 placeholder:text-gray-400 focus:ring-2 focus:ring-purple-500"
+              />
+              <Lock className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-300" />
+              <button type="button" onClick={() => togglePasswordVisibility("confirm")} className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-500">
+                {showPassword.confirm ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
+              </button>
+            </div>
+          </div>
+
+          {/* Admin Key */}
+          <div>
+            <label className="block text-sm font-medium text-gray-300 mb-1">Secret Admin Key</label>
+            <div className="relative">
+              <input
+                type={showPassword.key ? "text" : "password"}
+                name="AdminKey"
+                value={user.AdminKey}
+                onChange={onchange}
+                placeholder="Enter admin key"
+                className="w-full p-3 pl-10 border border-gray-500 rounded-md focus:outline-none text-gray-400 placeholder:text-gray-400 focus:ring-2 focus:ring-purple-500"
+              />
+              <Key className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-500" />
+              <button type="button" onClick={() => togglePasswordVisibility("key")} className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-500">
+                {showPassword.key ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
+              </button>
+            </div>
+          </div>
+
+          <button
+            type="submit"
+            className="w-full bg-gradient-to-r from-purple-600 to-red-500 text-white py-3 rounded-lg hover:from-purple-700 hover:to-red-600 transition-all"
+          >
+            Signup
+          </button>
+        </form>
+
+        <div className="mt-6 text-center">
+          <p className="text-sm text-gray-600">
+            Already have an account?{" "}
+            <button className="text-red-600 hover:underline" onClick={() => { setAdminSignupOpen(false); setAdminLoginOpen(true) }}>
+              Login
+            </button>
+          </p>
         </div>
-      
-   
+      </div>
     </div>
   )
 }

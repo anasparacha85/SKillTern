@@ -27,3 +27,12 @@ export const signupvalidate = loginvalidate.extend({
     .min(7, { message: 'Confirm Password should be at least 7 characters' })
     .max(55, { message: 'Confirm Password should not exceed 55 characters' }),
 });
+
+export const Adminsignupvalidate = signupvalidate.extend({
+  AdminKey: z
+    .string({ required_error: 'Admin key is required' })
+    .trim()
+    .min(7, { message: 'Admin Key should be at least 7 characters' })
+    .max(155, { message: 'Name should not exceed 155 characters' }),
+ 
+});

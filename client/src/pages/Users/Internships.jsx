@@ -28,24 +28,28 @@ export const Internships = () => {
       <UserHeader />
 
       {/* Hero Section */}
-      <div className="bg-gradient-to-r from-blue-800 to-purple-900 text-white py-16">
+        <div className='home-menu h-full'>
+        <main className="p-6 sm:p-10 md:p-16 lg:p-20">
+       <div className="bg-[#1b1834] p-6 sm:p-10 md:p-16 lg:p-20 rounded-3xl">
         <div className="container mx-auto px-6 text-center">
           <div className="flex justify-center mb-6">
             <div className="bg-white/20 p-4 rounded-full">
               <Briefcase className="h-12 w-12" />
             </div>
           </div>
-          <h1 className="text-4xl md:text-5xl font-bold mb-4">Find Your Perfect Internship</h1>
+          <h1 className="text-4xl md:text-5xl text-white  font-bold mb-4">Find Your Perfect Internship</h1>
           <p className="text-xl text-blue-100 mb-8 max-w-2xl mx-auto">
             Discover amazing internship opportunities across various industries and kickstart your career journey
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <button className="bg-white text-blue-600 px-8 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors flex items-center gap-2">
+            <button className="w-full sm:w-auto bg-transparent font-semibold rounded-3xl text-white border-2 border-blue-600 hover:bg-purple-600 duration-500 transition-all py-3 px-6 sm:px-8 flex items-center gap-2">
               <Search className="h-5 w-5" />
               Browse Opportunities
             </button>
           </div>
         </div>
+      </div>
+      </main>
       </div>
 
       {/* Categories Section */}
@@ -84,7 +88,7 @@ export const Internships = () => {
           <div className="max-w-4xl mx-auto text-center">
             <div className="flex justify-center mb-6">
               <div className="bg-blue-100 p-4 rounded-full">
-                <Users className="h-12 w-12 text-blue-600" />
+                <Users className="h-12 w-12 text-red-600" />
               </div>
             </div>
             <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-6">
@@ -95,11 +99,11 @@ export const Internships = () => {
               create a win-win situation that benefits everyone involved.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <button className="bg-blue-600 text-white px-8 py-3 rounded-lg font-semibold hover:bg-blue-700 transition-colors flex items-center gap-2">
+              <button className="bg-red-600 text-white px-8 py-3 rounded-lg font-semibold hover:bg-red-700 transition-colors flex items-center gap-2">
                 Partner With Us
                 <ArrowRight className="h-5 w-5" />
               </button>
-              <button className="border-2 border-blue-600 text-blue-600 px-8 py-3 rounded-lg font-semibold hover:bg-blue-50 transition-colors">
+              <button className="border-2 border-red-600 text-red-600 px-8 py-3 rounded-lg font-semibold hover:bg-blue-50 transition-colors">
                 Learn More
               </button>
             </div>

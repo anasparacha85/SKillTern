@@ -37,10 +37,12 @@ const AdminRegister=async (req,res)=>{
         console.log(req.headers);
         
         
-        const {AdminKey,name,email,password,ConfirmPassword}=req.body;
+        const {name,email,password,ConfirmPassword,AdminKey}=req.body;
         console.log(name,email,password,ConfirmPassword,AdminKey);
+        console.log("hello admin key",AdminKey);
         
-        console.log(process.env.ADMIN_SECRET_KEY);
+        
+        console.log("hello dotenv",process.env.ADMIN_SECRET_KEY);
         const user=await User.findOne({email:email})
         
         if(user){
@@ -52,7 +54,7 @@ const AdminRegister=async (req,res)=>{
        if(AdminKey!=process.env.ADMIN_SECRET_KEY){
         return res.status(403).json({FailureMessage:"Not Applicable Admin Key..You Can't Register as an Admin!"})
        }
-       const resgiter=await User.create({name,email,password,ConfirmPassword,role:'Admin'})
+       const resgiter=await User.create({name,email,password,ConfirmPassword,role:'Admin',Instructor:true,InstructorStatus:'active'})
        res.status(200).json({SuccessMessage:'You have Registered as an Admin Successfully!',token:await resgiter.generateToken()})
         
     } catch (error) {

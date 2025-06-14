@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { usestore } from "../../Store/ContextStore";
 import { useParams } from "react-router";
+import { toast } from "react-toastify";
 
 export const AddLessons = ({  }) => {
   const [formdata, setformdata] = useState({title:"",videoURL:""});
@@ -8,22 +9,29 @@ export const AddLessons = ({  }) => {
     setformdata({...formdata,[e.target.name]:e.target.value})
  }
  const params=useParams()
- const {url}=usestore()
+ const {url,jwtToken}=usestore()
   const handleSubmit = (e) => {
     e.preventDefault();
    fetch(`${url}/api/courses/addlesson/${params.id}`,{
     method:'POST',
     headers:{
-'Content-Type':'application/json'
+'Content-Type':'application/json',
+'Authorization':`Bearer ${jwtToken}`
     },
     body:JSON.stringify(formdata)
    }).then((res)=>{
     if(res.ok){
-        setformdata({title:"",vidoURL:""})
+        setformdata({title:"",videoURL:""})
     }
     return res.json()
    }).then((data)=>{
     console.log(data);
+    if(data.SuccessMessage){
+      toast.success(data.SuccessMessage)
+    }
+    if(data.FailureMessage){
+      toast.error(data.FailureMessage)
+    }
     
    }).catch((error)=>{
     console.log(error);

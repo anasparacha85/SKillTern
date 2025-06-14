@@ -21,7 +21,7 @@ export const Footer = () => {
               >
                 <path d="M12 2L2 19h20L12 2zm0 3.8L18.5 17H5.5L12 5.8z" />
               </svg>
-              <span className="font-medium text-white text-xl">Skillhub</span>
+              <span className="font-medium text-white text-xl">Skilltern</span>
             </a>
             </div>
             <div></div>
@@ -41,7 +41,7 @@ export const Footer = () => {
             </div>
           </div>
           <div className="lg:mx-auto text-left">
-            <h4 className="text-lg text-white font-medium mb-7">Skillhub</h4>
+            <h4 className="text-lg text-white font-medium mb-7">Skilltern</h4>
             <ul className="text-sm  transition-all duration-500 ">
               <li className="mb-6">
                 <a

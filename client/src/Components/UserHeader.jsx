@@ -13,8 +13,8 @@ export const UserHeader = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
   };
   const { UserLoginOpen, setUserLoginOpen, isLoggedIn, user, url } = usestore()
-  console.log(user.profilePicture);
-  if (user.profilePicture.startsWith("http")) {
+  console.log(user?.profilePicture);
+  if (user?.profilePicture?.startsWith("http")) {
     console.log("hello");
 
 
@@ -26,7 +26,7 @@ export const UserHeader = () => {
 
 
   return (
-    <header className="bg-[#242145] z-[9999]  sticky top-0 p-4">
+    <header className="bg-[#242145] z-20  sticky top-0 p-4">
       <div className="max-w-6xl  mx-auto flex items-center justify-between">
         {/* Logo */}
         <div className="text-xl w-1/5">
@@ -58,7 +58,7 @@ export const UserHeader = () => {
               onMouseLeave={() => setprofileopen(false)}
             >
               <img
-                src={user ? (user.profilePicture.startsWith("http") ? user.profilePicture : `${url}/${user.profilePicture}`) : " "
+                src={user?.profilePicture
                 }
                 alt="User"
                 className="w-12 h-12 rounded-full mr-4"
@@ -71,7 +71,7 @@ export const UserHeader = () => {
           </> :
             <button onClick={() => { setUserLoginOpen(true); localStorage.setItem('prevpath', location.pathname) }}
 
-              className="bg-green-600 text-white font-bold px-4 py-2 rounded-[30px] cursor-pointer" >Login</button>
+              className="bg-gradient-to-r from-purple-700 to-red-600 font-bold text-white font-bold px-4 py-2 rounded-[30px] cursor-pointer" >Login</button>
           }
 
         </div>
@@ -100,7 +100,7 @@ export const UserHeader = () => {
               onMouseLeave={() => setprofileopen(false)}
             >
               <img
-                src={user ? (user.profilePicture.startsWith("http") ? user.profilePicture : `${url}/${user.profilePicture}`) : " "
+                src={user?.profilePicture
                 }
                 alt="User"
                 className="w-12 h-12 rounded-full mr-4"
@@ -113,7 +113,7 @@ export const UserHeader = () => {
           </> :
             <button onClick={() => { setUserLoginOpen(true); localStorage.setItem('prevpath', location.pathname) }}
 
-              className="bg-green-600 text-white font-bold px-4 py-2 rounded-[30px] cursor-pointer" >Login</button>
+              className="bg-gradient-to-r from-purple-700 to-red-600 text-white font-bold px-4 py-2 rounded-[30px] cursor-pointer" >Login</button>
           }
 
         </div>

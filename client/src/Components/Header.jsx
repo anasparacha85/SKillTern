@@ -24,7 +24,7 @@ else{
 
 }
   return (
-    <header className="bg-[#1b1834] z-[9999] sticky top-0 p-4 ">
+    <header className="bg-[#1b1834] z-20 sticky top-0 p-4 ">
       <div className="max-w-6xl mx-auto flex items-center justify-between">
         {/* Logo */}
         <div className="text-xl w-1/5">
@@ -53,7 +53,7 @@ else{
              onMouseLeave={() => setAdminprofileopen(false)}
             >          
             <img
-              src={user?(user.profilePicture.startsWith("http")?user.profilePicture:`${url}/${user.profilePicture}`):" "
+              src={user?.profilePicture
               }
               alt="User"
               className="w-12 h-12 rounded-full mr-4"

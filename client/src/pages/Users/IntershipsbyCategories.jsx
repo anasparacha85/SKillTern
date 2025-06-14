@@ -5,6 +5,7 @@ import UserHeader from '../../Components/UserHeader'
 import Footer from '../../Components/Footer'
 import JobCategoryCard from '../../Components/Cardss/JobbyCategoryCard';
 import { ClipLoader } from 'react-spinners';
+import LoadingSkeleton from '../../Components/LoadingSkeleton';
 
 export const IntershipsbyCategories = () => {
 
@@ -35,25 +36,28 @@ export const IntershipsbyCategories = () => {
         fetchjobsbycategories()
     },[])
   
-    if(isLoading){return <div className='h-screen w-screen flex justify-center items-center '><ClipLoader size={50 } color='blue' loading={isLoading}/></div>}
+  
   return (
     <div>
     <UserHeader/>
-<div className='w-full flex justify-center'>
-  <h1 className='text-3xl font-bold'>Featured Oppurtunities</h1>
+<div className='w-full flex justify-center py-6'>
+  <h1 className='text-3xl font-bold '>Featured Oppurtunities</h1>
 
 
 
 </div>
 <div className='w-full flex justify-center ' >
+  {isLoading?<div className='h-screen w-screen  '><LoadingSkeleton/></div>:
 <div className='w-[75%] flex flex-col  '>
-  {jobsdata.map((value,index)=>(
+  {jobsdata?.map((value,index)=>(
 <JobCategoryCard key={value._id} title={value.JobName} image={value.JobImage} type={value.JobType} duration={value.JobDuration} id={value._id}/>
   )
 
   )}
+  
 
 </div>
+}
 </div>
 
 

@@ -35,7 +35,7 @@ const {user,url}=usestore()
         {/* User Profile Section */}
         <div className="flex flex-col items-center mb-6">
           <img
-            src={user?user.profilePicture.startsWith("http")?user.profilePicture:`${url}/${user.profilePicture}`:""}
+            src={user?.profilePicture}
             alt="User"
             className="w-20 h-20 rounded-full border-2 border-gray-500"
           />

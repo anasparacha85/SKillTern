@@ -42,7 +42,7 @@ export const InstructorPanel = () => {
           to="/LMS/Instructor/upload"
           className={({ isActive }) =>
             `flex items-center gap-2 p-3 rounded-lg transition ${
-              isActive ? "bg-green-600" : "hover:bg-gray-700"
+              isActive ? "bg-purple-600" : "hover:bg-gray-700"
             }`
           }
         >
@@ -58,7 +58,7 @@ export const InstructorPanel = () => {
               }`
             }
           >
-            <FaEye /> Delete Courses
+            <FaEye /> Manage Courses Courses
           </NavLink>
 }
           <NavLink

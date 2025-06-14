@@ -53,7 +53,7 @@ export const JobApplications = () => {
               </tr>
             </thead>
             <tbody>
-              {applications.map((app) => (
+              {applications?.map((app) => (
                 <tr key={app._id} className="hover:bg-gray-50">
                   <td className="border-b p-2">{app.name}</td>
                   <td className="border-b p-2">{app.email}</td>

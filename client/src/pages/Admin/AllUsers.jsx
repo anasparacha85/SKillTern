@@ -3,6 +3,7 @@ import React, { useState, useEffect } from "react";
 import { usestore } from "../../Store/ContextStore";
 import { toast } from "react-toastify";
 import { ClipLoader } from "react-spinners";
+import ChangeRoleModal from "../../Modals/ChangeRoleModal";
 
 // const mockUsers = [
 //   {
@@ -29,6 +30,10 @@ const AdminUsers = () => {
   const [users, setUsers] = useState([]);
   const [selectedImage, setSelectedImage] = useState(null);
   const [Loading, setLoading] = useState(false)
+  const [RoleModalOpen, setRoleModalOpen] = useState(false)
+  const [Role, setRole] = useState("")
+  const [userId, setuserId] = useState("")
+  
 const FetctUsers=async()=>{
     try {
         setLoading(true)
@@ -96,6 +101,34 @@ setLoading(false)
   const closeModal = () => {
     setSelectedImage(null);
   };
+   const handleRoleUpdate =async (newRole,id) => {
+    setRole(newRole);
+    try {
+      const response=await fetch(`${url}/api/admin/ChangeRole`,{
+    method:'PATCH',
+    headers:{
+      'Content-Type':'application/json',
+      'Authorization':`Bearer ${jwtToken}`
+    },
+    body:JSON.stringify({Role:newRole,userId:id})
+  })
+  const data=await response.json();
+  if(data.SuccessMessage){
+    toast.success(data.SuccessMessage)
+    FetctUsers()
+  }
+  if(data.FailureMessage){
+    toast.error(data.FailureMessage)
+  }
+  console.log(data);
+    } catch (error) {
+      toast.error(error.FailureMessage)
+    }
+  
+  
+    
+    console.log("Role updated to:", newRole);
+  };
 
   return (
      <div className="lg:max-w-6xl w-screen lg:ml-80 p-6 bg-white shadow-md rounded-lg mt-10 max-h-[550px] overflow-y-scroll overflow-x-scroll">
@@ -112,11 +145,13 @@ setLoading(false)
               <th className="p-3">Email</th>
               
               <th className="p-3">Status</th>
+               <th className="p-3">Role</th>
+
               <th className="p-3">Actions</th>
             </tr>
           </thead>
           <tbody>
-            {users.map((user) => (
+            {users?.map((user) => (
               <tr key={user._id} className="border-t hover:bg-gray-50">
                 <td className="p-3">
                   <img
@@ -142,16 +177,19 @@ profilePicture)}
                     {user.Status}
                   </span>
                 </td>
+                 <td className="p-3">{user.role}</td>
                 <td className="p-3 flex flex-wrap gap-2">
-                  <button onClick={()=>editUser(user._id)} className="px-2 py-1   text-xs rounded hover:bg-gray-100 cursor-pointer ">
-                    <Edit/>
+                  <button onClick={()=>{
+                    setRoleModalOpen(true);
+                    setRole(user.role)
+                    setuserId(user._id)
+
+
+
+                  }} className="px-4 py-2   text-xs rounded-[30px] bg-gray-300 hover:bg-gray-400 cursor-pointer ">
+                    Change Role
                   </button>
-                  <button
-                    onClick={() => deleteUser(user._id)}
-                    className="px-2 py-1   text-xs rounded hover:bg-gray-100 cursor-pointer "
-                  >
-                    <Delete/>
-                  </button>
+                 
                   <button
                     onClick={() => toggleStatus(user._id,user.Status)}
                     className={`px-2 py-1 text-[14px] rounded text-white flex gap-1 cursor-pointer rounded-l-full ${
@@ -186,7 +224,9 @@ profilePicture)}
           </div>
         </div>
       )}
+<ChangeRoleModal isOpen={RoleModalOpen} onClose={()=>setRoleModalOpen(false)} currentRole={Role} onChangeRole={handleRoleUpdate} userID={userId}/>
     </div>
+    
   );
 };
 

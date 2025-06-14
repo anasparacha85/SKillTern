@@ -1,167 +1,149 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { usestore } from '../../Store/ContextStore'
 import Aos from 'aos'
 import 'aos/dist/aos.css'
-import BaseInput from '../../Components/Inputs/BaseInput'
-import { useState } from 'react'
 import { toast } from 'react-toastify'
-import { ClipLoader } from 'react-spinners'
+import { Mail, Lock, Eye, EyeOff } from 'lucide-react'
 import ForgetPasswordModal from '../../Modals/ForgetPasswordModal'
-
+import { ClipLoader } from 'react-spinners'
 
 const UserLogin = () => {
-  useEffect(()=>{
-    Aos.init()
-   },[])
-  const [user, setuser] = useState({email:"",password:""})
-  const {url,UserLoginOpen,UserSignupOpen,setUserSignupOpen,setUserLoginOpen,SaveTokenToLs,SaveAdminKeyToLs,SuccessMessage,setSuccessMessage,isLoading,setisLoading,forgetpasswordmodalopen,setforgetpasswordmodalopen}=usestore()
+  useEffect(() => { Aos.init() }, [])
+  const [user, setUser] = useState({ email: "", password: "" })
+  const [showPassword, setShowPassword] = useState(false)
   const [FailureMessage, setFailureMessage] = useState(null)
- 
- const onchange=(e)=>{
-const {name,value}=e.target;
-setuser({...user,[name]:value})
+  const [isLoading, setisLoading] = useState(false)
 
- }
- const onsubmit=(e)=>{
-  e.preventDefault()
-  setisLoading(true)
-  fetch(`${url}/Api/Auth/Login`,{
-    method:'POST',
-    body:JSON.stringify(user),
-    headers:{
-      'Content-Type':'application/json'
-    }
-  }).then((response)=>{
-   
-      
-      
-     
-  
-    return response.json()
-  }).then((data)=>{
-    console.log(data);
-    if(data.token){
-      SaveTokenToLs(data.token)
-    }
-    if(data.AdminKey){
-      SaveAdminKeyToLs(data.AdminKey)
-    }
-    if(data.SuccessMessage){
-      setSuccessMessage(data.SuccessMessage)
-      toast.success(data.SuccessMessage)
-      setuser({email:"",password:""})
-      setUserLoginOpen(false)
-     
-     
+  const {
+    url,
+    UserLoginOpen,
+    setUserLoginOpen,
+    UserSignupOpen,
+    setUserSignupOpen,
+    SaveTokenToLs,
+    SaveAdminKeyToLs,
+    setSuccessMessage,
+    forgetpasswordmodalopen,
+    setforgetpasswordmodalopen
+  } = usestore()
 
-    }
-   
-    if(data.FailureMessage){
-      setFailureMessage(data.FailureMessage)
-      toast.error(data.FailureMessage)
-    }
-   
-    
-  }).catch((error)=>{
-   toast.error(error.FailureMessage)
-    
-  }).finally(()=>{
-    setisLoading(false)
-  })
+  const closeModal = () => setUserLoginOpen(false)
+  if (!UserLoginOpen) return null
+
+  const handleChange = (e) => {
+    const { name, value } = e.target
+    setUser({ ...user, [name]: value })
   }
-  
-    const closeModal=()=>{
-        setUserLoginOpen(false)
-    }
-    
-    if(!UserLoginOpen ) return null
-   
- 
-    return (
-    <div>
-       {/* Modal */}
-       
-       <div className="fixed inset-0 bg-black/10  flex items-start justify-center z-50 " 
-   style={{opacity:"10px"}}
-   >
-    
-      <div data-aos="fade-down"
-     data-aos-easing="linear"
-     data-aos-duration="500" className="bg-white rounded-lg w-[400px] py-6 px-4 relative mt-10">
-        <button
-          className="absolute top-2 right-2 cursor-pointer text-gray-500 hover:text-gray-800"
-          onClick={closeModal}
-        >
-          ✕
-        </button>
-            <h2 className="text-2xl font-semibold text-start mb-6">Login</h2>
-          
-            <hr />
-           {SuccessMessage?<div className='w-full flex justify-center bg-green-600 text-white'>{SuccessMessage}</div>
-           :FailureMessage?<div className='w-full flex justify-center bg-red-600 text-white'>{FailureMessage}</div>:
-           <div></div>
-           }
-            
-            <br />
-            <form onSubmit={onsubmit}>
-              <div className="mb-4">
-                <label htmlFor="email" className="block text-sm font-medium text-gray-700">
-                  Email
-                </label>
-               <BaseInput type='email' value={user.email} onchange={onchange} name='email' placeholder='enter your email'/>
-              </div>
 
-              <div className="mb-6">
-                <label htmlFor="password" className="block text-sm font-medium text-gray-700">
-                  Password
-                </label>
-                <BaseInput type='password' value={user.password} onchange={onchange} name='password' placeholder='enter your password'/>
-              </div>
+  const handleSubmit = (e) => {
+    e.preventDefault()
+    setisLoading(true)
+    fetch(`${url}/Api/Auth/Login`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(user),
+    })
+      .then(res => res.json())
+      .then(data => {
+        if (data.token) SaveTokenToLs(data.token)
+        if (data.AdminKey) SaveAdminKeyToLs(data.AdminKey)
 
-              <button
-                type="submit"
-                className="w-full bg-green-500 text-white py-3 rounded-md hover:bg-green-600 transition"
-              >
-                 {isLoading?<ClipLoader size={20} color='white' loading={isLoading}/>: "Login"}
-              </button>
-            </form>
+        if (data.SuccessMessage) {
+          setUser({ email: "", password: "" })
+          toast.success(data.SuccessMessage)
+          setSuccessMessage(data.SuccessMessage)
+          setUserLoginOpen(false)
+        } else if (data.FailureMessage) {
+          setFailureMessage(data.FailureMessage)
+          toast.error(data.FailureMessage)
+        }
+      })
+      .catch(err => toast.error(err.message || 'Login failed'))
+      .finally(()=>{
+        setisLoading(false)
+      })
+  }
 
-            <h1 className='text-gray-800 text-center'>OR</h1>
-            <button
-  type="button"
-  onClick={() => window.location.href = `${url}/api/auth/google`}
-  className="w-full cursor-pointer
-   flex items-center justify-center gap-2 bg-green-700 text-white py-3 rounded-md hover:bg-green-600 transition mt-3"
->
-  <img width="48" height="48" src="https://img.icons8.com/fluency/48/google-logo.png" alt="google-logo"/>
-  SignIn with Google
-</button>
-<ForgetPasswordModal  />
-<div className='flex flex-col text-center'>
+  return (
+    <div className="fixed inset-0 bg-black/10 flex items-start justify-center z-50">
+      <div data-aos="fade-down" data-aos-easing="linear" data-aos-duration="500"
+        className="bg-[#242145] rounded-xl w-[500px] py-8 px-6 shadow-xl relative mt-10">
 
-<p className="text-sm mt-4">
-  <button
-    className="text-green-600 cursor-pointer"
-    onClick={() => setforgetpasswordmodalopen(true)}
-  >
-    Forgot Password?
-  </button>
-</p>
-</div>
-            <div className="mt-4 text-center">
-              <p className="text-sm">
-                Don't have an account?{" "}
-                <button  className="text-green-500 cursor-pointer" onClick={() => { setUserLoginOpen(false); setUserSignupOpen(true); }}>
-                  Sign up
-                </button>
-              </p>
+        <button className="absolute top-2 right-2 text-gray-300 hover:text-gray-800" onClick={closeModal}>✕</button>
+        <h2 className="text-2xl font-bold text-start mb-6 text-gray-300">Login</h2>
+        <hr className="mb-4 text-white" />
+
+        {FailureMessage && <div className="w-full py-2 text-center bg-red-100 text-red-700 rounded-md mb-4">{FailureMessage}</div>}
+
+        <form onSubmit={handleSubmit} className="space-y-5">
+          {/* Email */}
+          <div>
+            <label className="block text-sm font-medium text-gray-300 mb-1">Email Address</label>
+            <div className="relative">
+              <input
+                type="email"
+                name="email"
+                value={user.email}
+                onChange={handleChange}
+                placeholder="Enter your email"
+                className="w-full p-3 pl-10 border border-gray-500 rounded-md focus:outline-none text-gray-400 placeholder:text-gray-400 focus:ring-2 focus:ring-purple-500"
+              />
+              <Mail className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-300" />
             </div>
-
-           
           </div>
+
+          {/* Password */}
+          <div>
+            <label className="block text-sm font-medium text-gray-300 mb-1">Password</label>
+            <div className="relative">
+              <input
+                type={showPassword ? "text" : "password"}
+                name="password"
+                value={user.password}
+                onChange={handleChange}
+                placeholder="Enter your password"
+                className="w-full p-3 pl-10 pr-10 border border-gray-500 rounded-md focus:outline-none text-gray-400 placeholder:text-gray-400 focus:ring-2 focus:ring-purple-500"
+              />
+              <Lock className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-300" />
+              <button type="button" onClick={() => setShowPassword(!showPassword)} className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-500">
+                {showPassword ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
+              </button>
+            </div>
+          </div>
+
+       <button
+  type="submit"
+  className="w-full bg-gradient-to-r from-purple-600 to-red-500 text-white py-3 rounded-lg hover:from-purple-700 hover:to-red-600 transition-all"
+>
+  {isLoading ? <ClipLoader size={20} color="white" /> : "Sign Up"}
+</button>
+
+        </form>
+
+        {/* Google Login */}
+        <button
+          type="button"
+          onClick={() => window.location.href = `${url}/api/auth/google`}
+          className="w-full flex items-center justify-center gap-2 mt-4 bg-gradient-to-r from-purple-700 to-red-500 text-white py-3 rounded-md hover:from-purple-800 hover:to-red-600 transition"
+        >
+          <img width="24" height="24" src="https://img.icons8.com/fluency/48/google-logo.png" alt="google-logo" />
+          Sign in with Google
+        </button>
+
+        <ForgetPasswordModal />
+
+        <div className="mt-6 text-center space-y-3">
+          <button className="text-sm text-red-500 hover:underline" onClick={() => setforgetpasswordmodalopen(true)}>
+            Forgot Password?
+          </button>
+          <p className="text-sm text-gray-600">
+            Don't have an account?{" "}
+            <button className="text-red-600 hover:underline" onClick={() => { setUserLoginOpen(false); setUserSignupOpen(true) }}>
+              Sign up
+            </button>
+          </p>
         </div>
-      
-   
+      </div>
     </div>
   )
 }

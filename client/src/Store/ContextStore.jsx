@@ -44,6 +44,7 @@ export const StoreContextProvider = ({ children }) => {
   const logouttrue = () => {
     localStorage.removeItem("Jwt Token");
     localStorage.removeItem("Admin Key");
+    localStorage.removeItem("instructor")
     setJwtToken(null);
     setAdminKey(null);
   };

@@ -22,7 +22,7 @@ const Card = ({ image, title, Category }) => {
       {/* Button */}
       <div className="flex justify-center pb-5">
         <NavLink to={`/Internships/${Category}`}>
-          <button className="bg-gradient-to-r from-purple-700 to-red-600 text-white px-6 py-2 rounded-full font-medium hover:from-green-600 hover:to-green-700 transition duration-300 shadow-md">
+          <button className="bg-gradient-to-r from-purple-700 to-red-600 text-white px-6 py-2 rounded-full font-medium cursor-pointer hover:from-purple-800  hover:to-red-700 transition duration-300 shadow-md">
             Apply Now
           </button>
         </NavLink>

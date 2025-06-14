@@ -6,7 +6,7 @@ export const BaseInput = ({type,name,value,onchange,placeholder}) => {
        <input
                   type={type}
                  
-                  className="w-full p-3 border border-gray-500 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500"
+                  className="w-full p-3 border border-gray-500 rounded-md focus:outline-none text-gray-400 placeholder:text-gray-400 focus:ring-2 focus:ring-purple-500"
                   placeholder={placeholder}
                   name={name}
                   value={value}

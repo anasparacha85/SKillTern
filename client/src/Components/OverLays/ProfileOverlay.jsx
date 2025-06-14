@@ -21,8 +21,8 @@ const ProfileOverlay = () => {
               className="w-14 h-14 rounded-full mr-4"
             />
             <div>
-              <h4 className="text-lg text-black">{user.name}</h4>
-              <h4 className="text-gray-500">{user.email}</h4>
+              <h4 className="text-lg text-black">{user?.name}</h4>
+              <h4 className="text-gray-500">{user?.email}</h4>
             </div>
           </div>
           

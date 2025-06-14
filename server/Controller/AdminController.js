@@ -173,6 +173,8 @@ const getAllUsers=async(req,res)=>{
 }
 const ToggleActivate=async(req,res)=>{
     try {
+    
+      
       let updatedUsers
         const {userId,Action}=req.body;
         console.log(Action);
@@ -213,6 +215,36 @@ const GetEnrolledStudents=async(req,res)=>{
     
   }
 }
+
+const getRoles=async(req,res)=>{
+  try {
+    const roles=await User.distinct('role');
+    res.status(200).json(roles)
+  } catch (error) {
+    res.status(500).json({FailureMessage:"Internal Server Error"})
+    
+  }
+}
+
+const ChangeRole=async(req,res)=>{
+  try {
+    console.log(req.user._id);
+    
+    const {Role,userId}=req.body;
+    const user=await User.findOne({_id:userId});
+    if(user.role==Role){
+      return res.status(400).json({FailureMessage:`${user.name}  is Already an ${Role}`})
+    }
+    await User.updateOne({_id:userId},{$set:{role:Role,Instructor:true,InstructorStatus:'active'}})
+    res.status(200).json({SuccessMessage:"Role has been changed Successfully"})
+  } catch (error) {
+    console.log("Error from Change Role",error);
+    
+    res.status(500).json({FailureMessage:"Internal Server Error"})
+    
+  }
+
+}
 export default {
   ViewJobApplications,
   deletejob,
@@ -222,5 +254,7 @@ export default {
   removeinstructor,
   getAllUsers,
   ToggleActivate,
-  GetEnrolledStudents
+  GetEnrolledStudents,
+  getRoles,
+  ChangeRole
 };

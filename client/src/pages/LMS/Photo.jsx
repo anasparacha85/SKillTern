@@ -22,6 +22,8 @@ export const Photo = () => {
 
   const onchange = (e) => {
     const { name, files } = e.target
+    console.log("helo",name,files);
+    
     if (files && files[0]) {
       // Validate file type
       const fileType = files[0].type
@@ -40,6 +42,8 @@ export const Photo = () => {
 
       // Create preview URL
       const reader = new FileReader()
+      console.log(reader);
+      
       reader.onload = () => {
         setPreviewUrl(reader.result)
       }
@@ -104,7 +108,7 @@ export const Photo = () => {
     <div className="p-3">
       <div className="bg-white shadow-lg rounded-xl overflow-hidden">
         {/* Header Section */}
-        <div className="bg-gradient-to-r from-blue-600 to-purple-600 text-white p-6">
+        <div className="bg-gradient-to-r from-blue-700 to-purple-900 text-white p-6">
           <h1 className="text-2xl font-bold mb-2 flex items-center gap-2">
             <Camera className="h-6 w-6" />
             Profile Photo
@@ -167,7 +171,7 @@ export const Photo = () => {
 
                 <div className="text-sm text-gray-500 text-center">
                   <p>Click the button to select a new profile picture</p>
-                  <p className="mt-1">Supported formats: JPG, PNG, GIF (Max: 5MB)</p>
+                  <p className="mt-1">Supported formats: JPG, PNG (Max: 5MB)</p>
                 </div>
               </div>
             </div>

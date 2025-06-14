@@ -66,9 +66,7 @@ const Home = () => {
                 assessments, learning paths, and labs— and you give them the tech
                 fluency they need to build business-critical skills.
               </p>
-              <button className="bg-pink-600 text-white font-bold py-3 px-8 rounded-full hover:bg-pink-700 transition duration-300">
-                Try for free
-              </button>
+            
             </div>
             <div className="lg:w-1/2 relative">
               <img

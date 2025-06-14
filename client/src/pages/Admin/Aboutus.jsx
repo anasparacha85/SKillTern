@@ -9,9 +9,9 @@ import WhyChooseUs from '../../Components/WhyChooseUs'
 const Aboutus = () => {
   return (
     <div className=" flex flex-col bg-white ">
-      <div className='sticky z-50'>
+   
           <Header/>
-      </div>
+     
   
     <BackgroundSection h3={"Home>    "} pgname={'  About-us'} h1={"About Us"}/>
     <WhyChooseUs/>
