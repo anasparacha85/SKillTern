@@ -29,9 +29,6 @@ const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
 
 const server = express();
 
-server.get("/", (res) => {
-  res.json({ message: "server started" });
-});
 
 // Stripe webhook
 server.post(
@@ -90,7 +87,10 @@ server.use(cors());
 server.use(bodyParser.json());
 server.use(passport.initialize());
 server.use(express.urlencoded({ extended: true }));
+server.get('/',(req,res)=>{
+  res.status(200).json({Message:"server is Running"})
 
+})
 server.use("/api/courses", CourseRouter);
 server.use("/Api/Auth", AuthRouter);
 server.use("/api/jobs", JobRouter);
@@ -102,24 +102,30 @@ server.use("/api/stripe", StripeRouter);
 server.use(errormiddleware);
 
 const PORT = process.env.PORT || 5000;
-connectdb();
+// connectdb();
 
 cron.schedule("0 0 * * *", () => {
   console.log("Running scheduled cron job at midnight...");
 });
 
-server.listen(PORT, "0.0.0.0", () => {
-  function getServerIp() {
-    const networkInterf = networkInterfaces();
-    for (const interfaceName in networkInterf) {
-      const interf = networkInterf[interfaceName];
-      for (const alias of interf) {
-        if (alias.family === "IPv4" && !alias.internal) {
-          return alias.address;
-        }
-      }
-    }
-    return "Unknown IP";
-  }
-  console.log(`Server is running on http://${getServerIp()}:${PORT}`);
-});
+// server.listen(PORT, "0.0.0.0", () => {
+//   function getServerIp() {
+//     const networkInterf = networkInterfaces();
+//     for (const interfaceName in networkInterf) {
+//       const interf = networkInterf[interfaceName];
+//       for (const alias of interf) {
+//         if (alias.family === "IPv4" && !alias.internal) {
+//           return alias.address;
+//         }
+//       }
+//     }
+//     return "Unknown IP";
+//   }
+//   console.log(`Server is running on http://${getServerIp()}:${PORT}`);
+// });
+connectdb().then(()=>{
+    server.listen(PORT,()=>{
+      console.log("server started");
+      
+    })
+})

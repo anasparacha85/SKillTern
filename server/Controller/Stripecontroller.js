@@ -2,8 +2,10 @@ import { configDotenv } from 'dotenv'
 import Stripe from 'stripe'
 import CourseModal from '../Model/CoursesModal.js'
 import EnrollmentModel from '../Model/EnrollmentModal.js'
+import dotenv from 'dotenv'
 
 configDotenv();
+dotenv.config()
 const stripe=Stripe(process.env.STRIPE_SECRET_KEY)
 
 const createCheckoutSession=async(req,res)=>{
@@ -35,8 +37,8 @@ const createCheckoutSession=async(req,res)=>{
             payment_method_types:['card'],
             mode:'payment',
             line_items,
-            success_url:'http://localhost:5173/success?session_id={CHECKOUT_SESSION_ID}',
-            cancel_url:'http://localhost:5173/cancel',
+            success_url:`${process.env.FRONT_END_URL}/success?session_id={CHECKOUT_SESSION_ID}`,
+            cancel_url:`${process.env.FRONT_END_URL}/cancel`,
             customer_email:user.email,
             metadata:{
                 userId:user._id.toString(),
