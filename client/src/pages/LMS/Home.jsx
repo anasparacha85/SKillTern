@@ -19,7 +19,8 @@ import Learn from "../../Components/Learn";
 import Evaluate from "../../Components/Evaluate";
 import Footer from "../../Components/Footer";
 import Experience from "../../Components/Experience";
-import FAQS from "../../Components/FAQS";
+import FAQS from "../../Components/FAQS.JSX";
+
 
 
 const Home = () => {

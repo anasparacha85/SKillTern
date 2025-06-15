@@ -3,7 +3,7 @@ import Header from '../../Components/Header'
 import BackgroundSection from '../../Components/BackgroundSection'
 import Subscribe from '../../Components/Subscribe'
 import Footer from '../../Components/Footer'
-import ImageTextSection from '../../Components/ImageTextSection'
+
 import BlogSecton from '../../Components/BlogSecton'
 import WhyChooseUs from '../../Components/WhyChooseUs'
 const Aboutus = () => {

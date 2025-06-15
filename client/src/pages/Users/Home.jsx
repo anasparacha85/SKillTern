@@ -1,12 +1,12 @@
 import React, { useEffect, useRef } from 'react'
 import UserHeader from '../../Components/UserHeader'
-import DreamSection from '../../Components/DreamSection'
+
 import { usestore } from '../../Store/ContextStore'
 import Card from '../../Components/Cardss/Card'
-import BlogsCart from '../../Components/Cardss/BlogsCart'
+
 import FeatureSection from '../../Components/FeatureSection'
 import OppositeFeatureSection from '../../Components/OppositeFeatureSection'
-import DuplicateFeatureSection from '../../Components/DuplicateFeatureSection'
+
 import Footer from '../../Components/Footer'
 import Aos from 'aos'
 import 'aos/dist/aos.css'
