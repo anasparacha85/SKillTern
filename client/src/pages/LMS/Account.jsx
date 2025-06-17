@@ -58,6 +58,9 @@ export const Account = () => {
     const { name, value } = e.target
     setformdata({ ...formdata, [name]: value })
   }
+  const notchange=(e)=>{
+    
+  }
 
   const onsubmit = (e) => {
     e.preventDefault()
@@ -154,7 +157,7 @@ export const Account = () => {
               <label className="block text-sm font-medium text-gray-700 mb-1">Current Password</label>
               <div className="relative">
                 <input
-                disabled={!user.password?true:false}
+              disabled={user.googleId ? true : false}
                   name="password"
                   value={formdata.password}
                   onChange={onchange}
@@ -179,11 +182,11 @@ export const Account = () => {
               <label className="block text-sm font-medium text-gray-700 mb-1">New Password</label>
               <div className="relative">
                 <input
-                   disabled={!user.password?true:false}
+                  disabled={user.googleId ? true : false}
                   name="NewPassword"
                   type={showPassword.new ? "text" : "password"}
                   value={formdata.NewPassword}
-                  onChange={onchange}
+                     onChange={onchange}
                   placeholder="Create a new password"
                   className="w-full p-3 pl-10 pr-10 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
                 />
@@ -234,7 +237,7 @@ export const Account = () => {
               <label className="block text-sm font-medium text-gray-700 mb-1">Confirm New Password</label>
               <div className="relative">
                 <input
-                   disabled={!user.password?true:false}
+                  disabled={user.googleId ? true : false}
                   name="ConfirmNewPassword"
                   value={formdata.ConfirmNewPassword}
                   onChange={onchange}

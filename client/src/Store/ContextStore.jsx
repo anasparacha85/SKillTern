@@ -69,6 +69,7 @@ export const StoreContextProvider = ({ children }) => {
       .then((res) => res.json())
       .then((data) => {
         localStorage.setItem("instructor", data.Instructor);
+        
         setUser(data);
       })
       .catch((err) => console.error(err));

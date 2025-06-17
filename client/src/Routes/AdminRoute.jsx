@@ -3,14 +3,14 @@ import { usestore } from '../Store/ContextStore'
 import { Outlet, useNavigate } from 'react-router'
 
 export const AdminRoute = () => {
-    const {AdminKey}=usestore()
+    const {AdminKey,user,jwtToken}=usestore()
     const navigate=useNavigate()
     useEffect(()=>{
-        if(!AdminKey){
+        if(user.role!=='Admin'){
             navigate('/job-portal')
             
         }
-    },[AdminKey])
+    },[user,jwtToken])
 
     return(
         <>

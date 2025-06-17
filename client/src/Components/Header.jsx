@@ -14,6 +14,8 @@ export const Header = () => {
   const navigate=useNavigate()
 const [Adminprofileopen, setAdminprofileopen] = useState(false)
 const {AdminLoginOpen,setAdminLoginOpen,AdminKey,isLoggedIn,user,url}=usestore()
+console.log(user);
+
 const onPostClick=()=>{
 if(!isLoggedIn || !AdminKey){
   setAdminLoginOpen(true)
@@ -46,7 +48,7 @@ else{
           <NavLink to="/job-portal/hiring" className={({isActive})=>(` ${isActive?'text-red-600':'text-white'}`)} >Hiring</NavLink>
           <NavLink to="/job-portal/About-us" className={({isActive})=>(` ${isActive?'text-red-600':'text-white'}`)}>About Us</NavLink>
           <NavLink to="/job-portal/contact" className={({isActive})=>(` ${isActive?'text-red-600':'text-white'}`)}>Contact</NavLink>
-          {isLoggedIn&&AdminKey?   <> 
+          {isLoggedIn&&user?.role=='Admin'?   <> 
             
             <div className="relative cursor-pointer -mt-1   text-gray-700 "
              onMouseEnter={() => setAdminprofileopen(true)}

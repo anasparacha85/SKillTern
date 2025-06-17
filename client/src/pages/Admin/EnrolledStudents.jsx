@@ -20,6 +20,8 @@ const EnrolledStudents = () => {
         },
       });
       const data = await response.json();
+      console.log(data);
+      
       setEnrollments(data);
     } catch (err) {
       console.error(err);

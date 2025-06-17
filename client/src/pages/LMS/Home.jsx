@@ -19,7 +19,7 @@ import Learn from "../../Components/Learn";
 import Evaluate from "../../Components/Evaluate";
 import Footer from "../../Components/Footer";
 import Experience from "../../Components/Experience";
-import FAQS from "../../Components/FAQS.JSX";
+import Faq from "../../Components/Faq";
 
 
 
@@ -154,7 +154,7 @@ const Home = () => {
         <div>
           <Evaluate />
         </div>
-        <FAQS />
+        <Faq />
       </div>
       <div>
         <Experience />

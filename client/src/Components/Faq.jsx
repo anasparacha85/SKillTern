@@ -2,7 +2,7 @@
 import { useState } from 'react'
 import { ChevronDown } from 'lucide-react'
 
-export const FAQS = () => {
+export const Faq = () => {
   const [expandedSection, setExpandedSection] = useState(null)
 
   const toggleSection = (section) => {
@@ -58,4 +58,4 @@ export const FAQS = () => {
   )
 }
 
-export default FAQS
+export default Faq

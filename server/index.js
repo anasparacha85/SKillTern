@@ -66,6 +66,7 @@ server.post(
         const Enroll = await Enrollment.create({
           student: userId,
           course: courseId,
+          PaymentStatus:'paid'
         });
         console.log("Enrollment successful");
 
